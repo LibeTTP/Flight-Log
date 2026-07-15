@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta name="theme-color" content="#0a1628"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Meridian"/>
+<title>Meridian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none'><rect width='32' height='32' fill='%230a1628'/><path d='M 5.5 23 C 11 6.5 21 6.5 26.5 23' stroke='%23f4a05c' stroke-width='2.4' stroke-linecap='round'/><circle cx='5.5' cy='23' r='2' fill='%23f4a05c'/><circle cx='26.5' cy='23' r='2.4' fill='none' stroke='%23f4a05c' stroke-width='2.4'/></svg>"/>
+<style>
+/**
+ * ========================================================================
+ * MERIDIAN · DESIGN TOKENS
+ * ========================================================================
+ * v1.0 · 09.07.26
+ * Palette: High Altitude · Typography: Wayfinder
+ *
+ * Import as first in your entry stylesheet.
+ * All tokens are available as CSS custom properties on :root.
+ * ========================================================================
+ */
+
+/* -------------------- FONTS -------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+
+:root {
+
+  /* ================================================================
+     TYPOGRAPHY
+     ================================================================ */
+
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body:    'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Font weights */
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Text scale */
+  --text-2xs:  9px;
+  --text-xs:  10px;
+  --text-sm:  11px;
+  --text-md:  13px;    /* body default */
+  --text-lg:  15px;
+  --text-xl:  18px;
+  --text-2xl: 24px;
+  --text-3xl: 32px;
+  --text-4xl: 48px;
+  --text-5xl: 72px;
+  --text-6xl: 112px;   /* hero wordmark */
+
+  /* Line heights */
+  --leading-tight:   1.1;
+  --leading-snug:    1.3;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.75;
+
+  /* Letter spacing (tracking) */
+  --tracking-tighter: -0.03em;
+  --tracking-tight:   -0.02em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.02em;
+  --tracking-wider:    0.15em;
+  --tracking-widest:   0.22em;
+
+
+  /* ================================================================
+     COLOR · Base surfaces
+     ================================================================ */
+
+  --color-bg:        #0a1628;   /* Cruise sky */
+  --color-surface-1: #101d33;   /* Card */
+  --color-surface-2: #17253d;   /* Elevated / hover */
+  --color-surface-3: #1e2d47;   /* Modal / active */
+
+
+  /* ================================================================
+     COLOR · Hairlines
+     ================================================================ */
+
+  --color-hairline:        rgba(232, 236, 243, 0.08);
+  --color-hairline-mid:    rgba(232, 236, 243, 0.14);
+  --color-hairline-strong: rgba(232, 236, 243, 0.22);
+
+
+  /* ================================================================
+     COLOR · Paper (text)
+     ================================================================ */
+
+  --color-paper:    #e8ecf3;                        /* Primary text */
+  --color-paper-2:  rgba(232, 236, 243, 0.72);      /* Secondary text */
+  --color-paper-3:  rgba(232, 236, 243, 0.48);      /* Tertiary / labels */
+  --color-paper-4:  rgba(232, 236, 243, 0.28);      /* Disabled / muted */
+
+
+  /* ================================================================
+     COLOR · Accent (Sunset horizon)
+     ================================================================ */
+
+  --color-sunset:      #f4a05c;                       /* Primary accent */
+  --color-sunset-hi:   #f7b077;                       /* Hover */
+  --color-sunset-lo:   #e08f4c;                       /* Active */
+  --color-sunset-veil: rgba(244, 160, 92, 0.14);      /* Background tint */
+
+
+  /* ================================================================
+     COLOR · Secondary (Mid-air blue)
+     ================================================================ */
+
+  --color-midair:      #5a8db3;                       /* Data secondary */
+  --color-midair-veil: rgba(90, 141, 179, 0.14);
+
+
+  /* ================================================================
+     COLOR · Semantic flight states
+     ================================================================ */
+
+  --state-scheduled: #7fa0c8;
+  --state-boarding:  #7bb3d9;
+  --state-inflight:  #f4a05c;     /* same as sunset */
+  --state-landed:    #6ac8a3;
+  --state-delayed:   #f0c674;
+  --state-cancelled: #e0625c;
+  --state-diverted:  #c485d4;
+
+  --state-scheduled-veil: rgba(127, 160, 200, 0.14);
+  --state-boarding-veil:  rgba(123, 179, 217, 0.14);
+  --state-inflight-veil:  rgba(244, 160, 92, 0.14);
+  --state-landed-veil:    rgba(106, 200, 163, 0.14);
+  --state-delayed-veil:   rgba(240, 198, 116, 0.14);
+  --state-cancelled-veil: rgba(224, 98, 92, 0.14);
+  --state-diverted-veil:  rgba(196, 133, 212, 0.14);
+
+
+  /* ================================================================
+     SPACING · 4pt grid
+     ================================================================ */
+
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  32px;
+  --space-8:  40px;
+  --space-9:  48px;
+  --space-10: 56px;
+  --space-11: 64px;
+  --space-12: 80px;
+  --space-13: 96px;
+  --space-14: 128px;
+
+
+  /* ================================================================
+     RADIUS
+     ================================================================ */
+
+  --radius-none: 0;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:  12px;
+  --radius-xl:  20px;
+  --radius-2xl: 28px;                /* iOS app icon */
+  --radius-full: 999px;
+
+
+  /* ================================================================
+     ELEVATION
+     ================================================================ */
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+
+  --shadow-inner-hi: inset 0 1px 0 rgba(232, 236, 243, 0.06);
+
+
+  /* ================================================================
+     MOTION
+     ================================================================ */
+
+  --duration-fast:   150ms;
+  --duration-base:   250ms;
+  --duration-slow:   400ms;
+  --duration-slower: 600ms;
+
+  /* Brand-specific animations */
+  --duration-splash: 2200ms;         /* Arc draw-in on cold start */
+  --duration-orbit:  2400ms;         /* Loading dot along the arc */
+
+  /* Easings */
+  --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+
+
+  /* ================================================================
+     Z-INDEX
+     ================================================================ */
+
+  --z-base:     0;
+  --z-elevated: 10;
+  --z-nav:      100;
+  --z-overlay:  1000;
+  --z-modal:    2000;
+  --z-toast:    3000;
+}
+
+
+/* ========================================================================
+   BASE RESET & DEFAULTS
+   ======================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-paper);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-paper);
+  margin: 0;
+}
+
+code, pre, samp, kbd, [data-mono] {
+  font-family: var(--font-mono);
+}
+
+
+/* ========================================================================
+   REUSABLE COMPONENTS · Flight state pill
+   ========================================================================
+   Usage:  <span class="pill pill--inflight">In flight</span>
+   ======================================================================== */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px 12px 5px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.pill--scheduled { background: var(--state-scheduled-veil); color: var(--state-scheduled); }
+.pill--boarding  { background: var(--state-boarding-veil);  color: var(--state-boarding); }
+.pill--inflight  { background: var(--state-inflight-veil);  color: var(--state-inflight); }
+.pill--landed    { background: var(--state-landed-veil);    color: var(--state-landed); }
+.pill--delayed   { background: var(--state-delayed-veil);   color: var(--state-delayed); }
+.pill--cancelled { background: var(--state-cancelled-veil); color: var(--state-cancelled); }
+.pill--diverted  { background: var(--state-diverted-veil);  color: var(--state-diverted); }
+
+
+/* ========================================================================
+   REDUCED MOTION
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--color-bg);color:var(--color-paper);font-family:var(--font-body);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+input,button,select{font-family:inherit}
+input[type="date"],input[type="time"],input[type="number"],input[type="email"],input[type="password"]{color-scheme:dark}
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.auth-card{width:100%;max-width:360px}
+.auth-logo{text-align:center;padding:0 0 28px}
+.auth-logo-mark{display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px}
+.auth-logo-name{font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-.03em;color:var(--color-paper);display:block;line-height:1}
+.auth-logo-sub{font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-paper-3);margin-top:6px;display:block}
+.auth-panel{background:var(--color-surface-1);border:1px solid var(--color-hairline);padding:28px;border-radius:12px}
+.auth-tabs{display:flex;margin-bottom:24px;border-bottom:1px solid var(--color-hairline)}
+.auth-tab{flex:1;background:none;border:none;color:var(--color-paper-3);padding:10px;font-size:10px;font-family:var(--font-mono);letter-spacing:.15em;text-transform:uppercase;cursor:pointer;position:relative;transition:color 150ms}
+.auth-tab.active{color:var(--color-sunset)}
+.auth-tab.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:var(--color-sunset)}
+.auth-fields{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
+.auth-field label{display:block;font-family:var(--font-mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-paper-3);margin-bottom:8px}
+.auth-field input{width:100%;background:var(--color-bg);border:1px solid var(--color-hairline-mid);color:var(--color-paper);padding:13px 14px;font-size:15px;outline:none;transition:border-color 150ms;border-radius:4px}
+.auth-field input:focus{border-color:var(--color-sunset)}
+.auth-field input::placeholder{color:var(--color-paper-4)}
+.auth-error{color:var(--state-cancelled);background:var(--state-cancelled-veil);border-left:2px solid var(--state-cancelled);padding:10px 14px;font-size:11px;margin-bottom:14px;border-radius:0 4px 4px 0}
+.auth-msg{color:var(--color-sunset);background:var(--color-sunset-veil);border-left:2px solid var(--color-sunset);padding:10px 14px;font-size:11px;margin-bottom:14px;border-radius:0 4px 4px 0}
+.btn-auth{background:var(--color-sunset);border:none;color:var(--color-bg);padding:14px;font-weight:700;font-size:11px;cursor:pointer;letter-spacing:.2em;text-transform:uppercase;width:100%;transition:background 150ms;border-radius:4px;font-family:var(--font-mono)}
+.btn-auth:hover{background:var(--color-sunset-hi)}
+.btn-auth:disabled{background:var(--color-surface-3);color:var(--color-paper-4);cursor:not-allowed}
+.auth-footer{text-align:center;padding-top:14px}
+.auth-footer button{background:none;border:none;color:var(--color-paper-4);font-size:10px;font-family:var(--font-mono);letter-spacing:.1em;cursor:pointer;text-transform:uppercase;padding:8px;transition:color 150ms}
+.auth-footer button:hover{color:var(--color-paper-2)}
+.app-wrap{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+.header{background:var(--color-bg);border-bottom:1px solid var(--color-hairline);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.brand{font-family:var(--font-display);font-size:20px;font-weight:700;letter-spacing:-.02em;color:var(--color-paper);line-height:1;display:flex;align-items:center;gap:10px}
+.brand-mark{display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.header-right{display:flex;align-items:center;gap:10px}
+.sync-indicator{width:6px;height:6px;border-radius:50%;background:var(--color-surface-3);flex-shrink:0;transition:background .3s}
+.sync-indicator.syncing{background:var(--color-sunset);animation:pulse 1s infinite}
+.sync-indicator.ok{background:var(--state-landed)}
+.sync-indicator.error{background:var(--state-cancelled)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.btn-logout{background:none;border:none;color:var(--color-paper-4);font-size:18px;cursor:pointer;padding:4px 8px;line-height:1;transition:color 150ms}
+.btn-logout:hover{color:var(--color-sunset)}
+.content{flex:1;overflow-y:auto;padding:0 0 80px;-webkit-overflow-scrolling:touch}
+.page{animation:fadeIn 180ms cubic-bezier(0.16,1,0.3,1)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.tabbar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--color-surface-1);border-top:1px solid var(--color-hairline);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+.tabbar-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 2px 8px;background:none;border:none;cursor:pointer;transition:color 150ms;color:var(--color-paper-4);min-width:0}
+.tabbar-item.active{color:var(--color-sunset)}
+.tabbar-icon{font-size:18px;line-height:1}
+.tabbar-label{font-family:var(--font-mono);font-size:8px;letter-spacing:.06em;text-transform:uppercase;line-height:1;white-space:nowrap}
+.tabbar-item.active .tabbar-label{color:var(--color-sunset)}
+.tabbar-center{flex:1;display:flex;flex-direction:column;align-items:center;position:relative}
+.tabbar-center .tabbar-add{position:absolute;top:-44px}
+.tabbar-add{background:var(--color-sunset);border-radius:999px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--color-bg);font-size:24px;font-weight:300;box-shadow:0 4px 20px rgba(244,160,92,.45);border:none;cursor:pointer;transition:transform 150ms cubic-bezier(0.34,1.56,0.64,1),background 150ms;flex-shrink:0}
+.tabbar-add:active{transform:scale(.9)}
+#globe{width:100%;height:calc(100vh - 130px);height:calc(100dvh - 130px);overflow:hidden;background:#030508;position:relative;cursor:grab;touch-action:none}
+#globe:active{cursor:grabbing}
+#globe canvas{display:block}
+.globe-hint{position:absolute;bottom:16px;left:16px;color:var(--color-paper-4);font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;pointer-events:none;z-index:5}
+.globe-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--color-sunset);font-family:var(--font-mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;z-index:3}
+.airport-info{position:absolute;background:rgba(16,29,51,.95);border:1px solid var(--color-hairline-mid);padding:14px 16px;color:var(--color-paper);pointer-events:none;z-index:20;backdrop-filter:blur(12px);box-shadow:0 8px 24px rgba(0,0,0,.5);max-width:220px;display:none;transform:translate(-50%,calc(-100% - 16px));line-height:1.5;border-radius:8px}
+.airport-info.visible{display:block}
+.airport-info-iata{color:var(--color-sunset);font-family:var(--font-mono);font-weight:600;font-size:12px;letter-spacing:.2em}
+.airport-info-city{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--color-paper);margin-top:2px}
+.airport-info-name{color:var(--color-paper-3);font-family:var(--font-mono);font-size:10px;margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
+.airport-info-visits{color:var(--color-sunset);font-family:var(--font-mono);font-size:9px;margin-top:8px;padding-top:8px;border-top:1px solid var(--color-hairline);letter-spacing:.1em;text-transform:uppercase}
+.airport-info::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--color-hairline-mid)}
+.stats-strip{display:flex;overflow-x:auto;scrollbar-width:none;gap:1px;background:var(--color-hairline);border-top:1px solid var(--color-hairline);border-bottom:1px solid var(--color-hairline)}
+.stats-strip::-webkit-scrollbar{display:none}
+.strip-stat{background:var(--color-bg);padding:14px 20px;display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+.strip-val{font-family:var(--font-display);font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--color-paper);line-height:1}
+.strip-val .u{color:var(--color-sunset);font-size:12px;margin-left:2px;font-weight:500}
+.strip-lbl{font-family:var(--font-mono);font-size:9px;color:var(--color-paper-3);text-transform:uppercase;letter-spacing:.15em}
+.flight-card{background:var(--color-surface-1);border-bottom:1px solid var(--color-hairline);padding:16px 20px;transition:background 120ms}
+.flight-card:active{background:var(--color-surface-2)}
+.flight-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.flight-card-num{color:var(--color-sunset);font-family:var(--font-mono);font-size:12px;letter-spacing:.15em;font-weight:600}
+.flight-card-airline{font-family:var(--font-mono);font-size:10px;color:var(--color-paper-3);margin-top:3px}
+.flight-card-date{font-family:var(--font-mono);color:var(--color-paper-3);font-size:10px;letter-spacing:.08em}
+.flight-card-route{display:flex;align-items:center}
+.route-ap{flex:1}
+.route-ap-code{font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-.03em;color:var(--color-paper);line-height:1}
+.route-ap-city{font-family:var(--font-mono);font-size:9px;color:var(--color-paper-3);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+.route-ap-time{font-family:var(--font-mono);font-size:12px;color:var(--color-paper-2);margin-top:3px}
+.route-mid{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 8px;padding-top:10px}
+.route-mid-line{width:100%;height:1px;background:var(--color-hairline-mid);position:relative}
+.route-mid-line::after{content:"›";position:absolute;right:-4px;top:-9px;color:var(--color-sunset);font-size:14px}
+.route-mid-dur{font-family:var(--font-mono);font-size:9px;color:var(--color-sunset);letter-spacing:.1em;text-transform:uppercase}
+.route-ap-right{text-align:right}
+.flight-card-footer{display:flex;gap:16px;margin-top:14px;padding-top:12px;border-top:1px solid var(--color-hairline);align-items:center}
+.fmeta{display:flex;flex-direction:column;gap:2px}
+.fmeta-val{font-family:var(--font-mono);font-size:12px;color:var(--color-paper-2)}
+.fmeta-lbl{font-family:var(--font-mono);font-size:9px;color:var(--color-paper-4);text-transform:uppercase;letter-spacing:.1em}
+.fmeta-delay{color:var(--state-delayed)}
+.btn-del{margin-left:auto;background:none;border:none;color:var(--color-paper-4);font-size:16px;cursor:pointer;padding:4px 8px;transition:color 150ms;line-height:1;border-radius:4px}
+.btn-del:hover{color:var(--state-cancelled)}
+.sort-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-bottom:1px solid var(--color-hairline);background:var(--color-bg);position:sticky;top:0;z-index:5}
+.sort-count{font-family:var(--font-mono);font-size:10px;color:var(--color-paper-3);text-transform:uppercase;letter-spacing:.15em}
+.sort-count strong{color:var(--color-sunset)}
+.sort-select{background:transparent;border:1px solid var(--color-hairline-mid);color:var(--color-paper-2);padding:5px 10px;font-size:10px;font-family:var(--font-mono);outline:none;border-radius:4px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-hairline);margin-bottom:1px}
+.stat{background:var(--color-surface-1);padding:20px 16px;display:flex;flex-direction:column;gap:6px}
+.stat-value{font-family:var(--font-display);font-size:28px;font-weight:700;letter-spacing:-.02em;color:var(--color-paper);line-height:1}
+.stat-value .unit{color:var(--color-sunset);font-size:13px;margin-left:3px;font-weight:500}
+.stat-label{font-family:var(--font-mono);font-size:9px;color:var(--color-paper-3);text-transform:uppercase;letter-spacing:.15em}
+.section-card{background:var(--color-surface-1);border-bottom:1px solid var(--color-hairline);padding:20px}
+.section-title{font-family:var(--font-mono);font-size:9px;color:var(--color-paper-3);text-transform:uppercase;letter-spacing:.2em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--color-hairline)}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.bar-iata{color:var(--color-sunset);font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;width:36px;font-weight:600}
+.bar-container{flex:1}
+.bar-city{font-family:var(--font-display);font-size:13px;font-weight:500;color:var(--color-paper-2);margin-bottom:4px}
+.bar-track{background:var(--color-surface-3);height:3px;border-radius:999px}
+.bar-fill{background:var(--color-sunset);height:100%;border-radius:999px}
+.bar-count{color:var(--color-paper);font-family:var(--font-mono);font-size:11px;width:20px;text-align:right}
+.chip{background:var(--color-surface-2);border:1px solid var(--color-hairline-mid);padding:7px 12px;display:inline-block;border-radius:4px}
+.chip-code{color:var(--color-sunset);font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;font-weight:600}
+.chip-count{color:var(--color-paper-3);font-family:var(--font-mono);font-size:10px;margin-left:8px}
+.form-section{background:var(--color-surface-1);padding:20px;margin-bottom:1px}
+.form-title{font-family:var(--font-display);font-size:20px;font-weight:700;letter-spacing:-.02em;color:var(--color-paper);margin-bottom:20px}
+.form-row{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.form-field{flex:1;min-width:110px;position:relative}
+.form-field label{display:block;font-family:var(--font-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-paper-3);margin-bottom:7px}
+.form-field input{width:100%;background:var(--color-bg);border:1px solid var(--color-hairline-mid);color:var(--color-paper);padding:12px;font-size:14px;outline:none;transition:border-color 150ms;border-radius:4px}
+.form-field input:focus{border-color:var(--color-sunset)}
+.form-field input::placeholder{color:var(--color-paper-4)}
+.form-preview{background:var(--color-sunset-veil);border-left:2px solid var(--color-sunset);padding:11px 14px;color:var(--color-sunset);font-family:var(--font-mono);font-size:11px;margin-bottom:14px;border-radius:0 4px 4px 0}
+.form-preview strong{color:var(--color-paper)}
+.form-error{color:var(--state-cancelled);background:var(--state-cancelled-veil);border-left:2px solid var(--state-cancelled);padding:10px 14px;font-family:var(--font-mono);font-size:11px;margin-bottom:14px;border-radius:0 4px 4px 0}
+.btn-submit{background:var(--color-sunset);border:none;color:var(--color-bg);padding:15px;font-weight:700;font-size:11px;cursor:pointer;letter-spacing:.2em;text-transform:uppercase;width:100%;transition:background 150ms;margin-top:6px;border-radius:4px;font-family:var(--font-mono)}
+.btn-submit:hover{background:var(--color-sunset-hi)}
+.suggestions{position:absolute;top:100%;left:0;right:0;background:var(--color-surface-2);border:1px solid var(--color-hairline-mid);z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.5);max-height:220px;overflow-y:auto;margin-top:2px;border-radius:8px}
+.suggestion{padding:10px 12px;cursor:pointer;display:flex;gap:10px;font-size:11px;border-bottom:1px solid var(--color-hairline)}
+.suggestion:last-child{border-bottom:none}
+.suggestion:hover,.suggestion:active{background:var(--color-surface-3)}
+.suggestion-iata{color:var(--color-sunset);font-family:var(--font-mono);font-weight:600;width:38px;letter-spacing:.1em}
+.suggestion-city{color:var(--color-paper-2);font-family:var(--font-mono)}
+.empty{text-align:center;padding:60px 24px;color:var(--color-paper-3)}
+.empty-icon{font-size:36px;margin-bottom:16px;opacity:.4}
+.empty-title{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--color-paper-2);margin-bottom:8px}
+.empty-sub{font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--color-paper-3)}
+.btn-empty{display:inline-block;margin-top:20px;background:none;border:1px solid var(--color-sunset);color:var(--color-sunset);padding:10px 24px;font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all 150ms;border-radius:4px}
+.btn-empty:hover{background:var(--color-sunset);color:var(--color-bg)}
+.rewards-header{padding:20px;border-bottom:1px solid var(--color-hairline);display:flex;align-items:baseline;gap:10px}
+.rewards-count{font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-.03em;color:var(--color-sunset)}
+.rewards-total{font-family:var(--font-mono);font-size:11px;color:var(--color-paper-3);letter-spacing:.1em}
+.rewards-section{margin-bottom:0}
+.rewards-section-title{font-family:var(--font-mono);font-size:9px;color:var(--color-paper-3);text-transform:uppercase;letter-spacing:.2em;padding:14px 20px 10px;background:var(--color-bg);border-bottom:1px solid var(--color-hairline)}
+.rewards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1px;background:var(--color-hairline);margin-bottom:1px}
+.badge{background:var(--color-surface-1);padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;position:relative;transition:background 150ms}
+.badge.unlocked{background:var(--color-surface-2)}
+.badge.unlocked::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,var(--color-sunset-veil) 0%,transparent 65%);pointer-events:none}
+.badge.locked{opacity:.35}
+.badge-icon{font-size:26px;line-height:1}
+.badge-name{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--color-paper);line-height:1.2}
+.badge.locked .badge-name{color:var(--color-paper-3)}
+.badge-desc{font-family:var(--font-mono);color:var(--color-paper-3);font-size:9px;letter-spacing:.05em;text-transform:uppercase;line-height:1.4}
+.badge-progress{width:100%;background:var(--color-surface-3);height:2px;margin-top:2px;border-radius:999px}
+.badge-progress-fill{background:var(--color-sunset);height:100%;transition:width 400ms cubic-bezier(0.16,1,0.3,1);border-radius:999px}
+.badge-check{position:absolute;top:8px;right:8px;width:16px;height:16px;border-radius:50%;background:var(--color-sunset);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--color-bg);font-weight:700}
+.passport-wrap{max-width:420px;margin:0 auto;padding:20px 20px 32px}
+.passport-share-btn{display:block;width:100%;background:none;border:1px solid var(--color-hairline-mid);color:var(--color-paper-3);font-family:var(--font-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:11px;cursor:pointer;margin-bottom:20px;transition:all 150ms;border-radius:4px}
+.passport-share-btn:hover{border-color:var(--color-sunset);color:var(--color-sunset)}
+.passport{background:#4a1942;color:#f5e6c8;font-family:'IBM Plex Mono',monospace;position:relative;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.6);display:flex;flex-direction:column;border-radius:8px}
+.passport.golden{background:linear-gradient(160deg,#2a1f00 0%,#1a1400 40%,#2a1f00 100%);box-shadow:0 20px 80px rgba(244,160,92,.4)}
+.passport.golden::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,215,0,.06) 0%,transparent 50%,rgba(255,215,0,.04) 100%);pointer-events:none}
+.passport.golden .passport-cover{border-bottom-color:rgba(244,160,92,.4)}
+.passport.golden .passport-emblem{border-color:rgba(244,160,92,.9);background:rgba(244,160,92,.15);box-shadow:0 0 24px rgba(244,160,92,.25)}
+.passport.golden .passport-title,.passport.golden .passport-subtitle{color:rgba(244,160,92,.7)}
+.passport.golden .passport-name{color:#f5d878}
+.passport.golden .passport-stat-row{border-bottom-color:rgba(244,160,92,.12)}
+.passport.golden .passport-stat-label{color:rgba(244,160,92,.55)}
+.passport.golden .passport-stat-value{color:#f5d878}
+.passport.golden .passport-stat-unit{color:rgba(244,160,92,.65)}
+.passport.golden .passport-stamp{border-color:rgba(244,160,92,.4);color:rgba(244,160,92,.85)}
+.passport.golden .passport-mrz{color:rgba(244,160,92,.4);border-top-color:rgba(244,160,92,.15)}
+.passport-legend-badge{display:inline-block;background:linear-gradient(90deg,#b8860b,#f4a05c,#ffd700,#f4a05c,#b8860b);background-size:200% auto;color:#1a1000;font-size:9px;letter-spacing:.25em;text-transform:uppercase;padding:4px 12px;font-weight:700;animation:shimmer 2s linear infinite;margin-top:6px;border-radius:999px}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+.passport::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(244,160,92,.07) 0%,transparent 50%),repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(244,160,92,.02) 18px,rgba(244,160,92,.02) 19px);pointer-events:none}
+.passport-cover{padding:32px 28px 22px;border-bottom:1px solid rgba(244,160,92,.2);display:flex;flex-direction:column;align-items:center;gap:10px}
+.passport-emblem{width:50px;height:50px;border:1.5px solid rgba(244,160,92,.55);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.passport-title{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,160,92,.6);text-align:center}
+.passport-name{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;letter-spacing:-.02em;color:#f5e6c8;text-align:center}
+.passport-subtitle{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.2em;color:rgba(244,160,92,.45);text-transform:uppercase}
+.passport-body{flex:1;padding:18px 24px}
+.passport-stat-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(244,160,92,.08)}
+.passport-stat-row:last-of-type{border-bottom:none}
+.passport-stat-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,160,92,.45)}
+.passport-stat-value{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#f5e6c8;letter-spacing:-.01em}
+.passport-stat-unit{font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(244,160,92,.55);margin-left:4px}
+.passport-countries{padding:14px 0 0}
+.passport-countries-label,.passport-stamps-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,160,92,.45);margin-bottom:10px}
+.passport-flags{display:flex;flex-wrap:wrap;gap:5px;font-size:20px;line-height:1}
+.passport-stamps{padding:14px 0 0}
+.passport-stamp-grid{display:flex;flex-wrap:wrap;gap:5px}
+.passport-stamp{border:1px solid rgba(244,160,92,.25);padding:4px 9px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(244,160,92,.65);border-radius:2px}
+.passport-mrz{background:rgba(0,0,0,.2);padding:12px 24px;font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.12em;color:rgba(244,160,92,.3);line-height:1.8;border-top:1px solid rgba(244,160,92,.08);word-break:break-all}
+.share-toast{position:fixed;bottom:calc(70px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--color-sunset);color:var(--color-bg);font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:10px 20px;z-index:3000;opacity:0;transition:opacity 250ms;pointer-events:none;white-space:nowrap;border-radius:999px}
+.share-toast.visible{opacity:1}
+
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+
+
+
+// -- SUPABASE CONFIG --
+const SUPA_URL = "https://dzypqlhhndxjcikimlxv.supabase.co";
+const SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR6eXBxbGhobmR4amNpa2ltbHh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1MTAzNTUsImV4cCI6MjA5OTA4NjM1NX0.6pq5KtRn2A7cuDjbafBWa-Qo2Q1B7hDlgIDLCUCYpeY";
+
+const supa = {
+  _h: () => ({ "Content-Type": "application/json", "apikey": SUPA_KEY, "Authorization": "Bearer " + (supa._token || SUPA_KEY) }),
+  _token: null, _user: null,
+
+  async signUp(email, password) {
+    const r = await fetch(SUPA_URL + "/auth/v1/signup", { method: "POST", headers: supa._h(), body: JSON.stringify({ email, password }) });
+    const d = await r.json();
+    if (d.error) throw new Error(d.error.message || d.msg || "Errore registrazione");
+    if (d.access_token) { supa._token = d.access_token; supa._user = d.user; localStorage.setItem("sb_token", d.access_token); localStorage.setItem("sb_refresh", d.refresh_token||""); }
+    return d;
+  },
+
+  async signIn(email, password) {
+    const r = await fetch(SUPA_URL + "/auth/v1/token?grant_type=password", { method: "POST", headers: supa._h(), body: JSON.stringify({ email, password }) });
+    const d = await r.json();
+    if (d.error || d.error_description) throw new Error(d.error_description || d.error || "Email o password errati");
+    supa._token = d.access_token; supa._user = d.user;
+    localStorage.setItem("sb_token", d.access_token);
+    localStorage.setItem("sb_refresh", d.refresh_token||"");
+    return d;
+  },
+
+  async refreshSession() {
+    const refresh = localStorage.getItem("sb_refresh");
+    if (!refresh) return false;
+    try {
+      const r = await fetch(SUPA_URL + "/auth/v1/token?grant_type=refresh_token", { method: "POST", headers: supa._h(), body: JSON.stringify({ refresh_token: refresh }) });
+      const d = await r.json();
+      if (d.access_token) { supa._token = d.access_token; supa._user = d.user; localStorage.setItem("sb_token", d.access_token); localStorage.setItem("sb_refresh", d.refresh_token||""); return true; }
+    } catch(e) {}
+    return false;
+  },
+
+  async getUser() {
+    const token = localStorage.getItem("sb_token");
+    if (!token) return null;
+    supa._token = token;
+    try {
+      const r = await fetch(SUPA_URL + "/auth/v1/user", { headers: supa._h() });
+      if (r.status === 401) { const ok = await supa.refreshSession(); if (!ok) return null; const r2 = await fetch(SUPA_URL + "/auth/v1/user", { headers: supa._h() }); const d2 = await r2.json(); if (d2.id) { supa._user = d2; return d2; } return null; }
+      const d = await r.json();
+      if (d.id) { supa._user = d; return d; }
+    } catch(e) {}
+    return null;
+  },
+
+  signOut() { supa._token = null; supa._user = null; localStorage.removeItem("sb_token"); localStorage.removeItem("sb_refresh"); },
+
+  async getFlights() {
+    const tryGet = async () => {
+      const r = await fetch(SUPA_URL + "/rest/v1/flights?order=id.desc", { headers: { ...supa._h(), "Prefer": "return=representation" } });
+      if (!r.ok) throw new Error("Errore caricamento voli");
+      return r.json();
+    };
+    try { return await tryGet(); }
+    catch(e) {
+      if (e.message && (e.message.includes("JWT") || e.message.includes("expired") || e.message.includes("token"))) {
+        const ok = await supa.refreshSession();
+        if (ok) return await tryGet();
+        else { supa.signOut(); state.user = null; render(); throw e; }
+      }
+      throw e;
+    }
+  },
+
+  async insertFlight(f) {
+    const tryInsert = async () => {
+      const r = await fetch(SUPA_URL + "/rest/v1/flights", { method: "POST", headers: { ...supa._h(), "Prefer": "return=representation" }, body: JSON.stringify(dbRow(f)) });
+      if (!r.ok) { const e = await r.json(); throw new Error(e.message || "Errore salvataggio"); }
+      return r.json();
+    };
+    try { return await tryInsert(); }
+    catch(e) {
+      if (e.message && (e.message.includes("JWT") || e.message.includes("expired") || e.message.includes("token"))) {
+        const ok = await supa.refreshSession();
+        if (ok) return await tryInsert();
+      }
+      throw e;
+    }
+  },
+
+  async deleteFlight(id) {
+    const tryDelete = async () => {
+      const r = await fetch(SUPA_URL + "/rest/v1/flights?id=eq." + id, { method: "DELETE", headers: supa._h() });
+      if (!r.ok) throw new Error("Errore eliminazione");
+    };
+    try { return await tryDelete(); }
+    catch(e) {
+      if (e.message && (e.message.includes("JWT") || e.message.includes("expired") || e.message.includes("token"))) {
+        const ok = await supa.refreshSession();
+        if (ok) return await tryDelete();
+      }
+      throw e;
+    }
+  },
+
+  async resetPassword(email) {
+    const r = await fetch(SUPA_URL + "/auth/v1/recover", { method: "POST", headers: supa._h(), body: JSON.stringify({ email }) });
+    const d = await r.json();
+    if (d.error) throw new Error(d.error.message || "Errore reset");
+  }
+};
+
+// ── DATA LOADING ─────────────────────────────────────────────────────────────
+let AIRPORTS = {};
+let FLAG = {};
+let AIRLINES = {};
+
+const airlineFromFN = fn => {
+  if(!fn||fn.length<2) return "";
+  return AIRLINES[fn.replace(/[0-9]/g,"").toUpperCase().slice(0,2)]||"";
+};
+
+async function loadData() {
+  const CACHE_KEY_AP = 'meridian_airports_v2';
+  const CACHE_KEY_AL = 'meridian_airlines_v2';
+  try {
+    // Try cache first
+    const cachedAP = localStorage.getItem(CACHE_KEY_AP);
+    const cachedAL = localStorage.getItem(CACHE_KEY_AL);
+    if (cachedAP && cachedAL) {
+      AIRPORTS = JSON.parse(cachedAP);
+      const airlinesData = JSON.parse(cachedAL);
+      AIRLINES = airlinesData;
+      // Build FLAG from countries
+      FLAG = {};
+      Object.values(AIRPORTS).forEach(ap => {
+        if (ap.country && ap.country.length === 2 && !FLAG[ap.country]) {
+          FLAG[ap.country] = String.fromCodePoint(0x1F1E6 + ap.country.charCodeAt(0) - 65) +
+                             String.fromCodePoint(0x1F1E6 + ap.country.charCodeAt(1) - 65);
+        }
+      });
+      return;
+    }
+  } catch(e) {}
+
+  // Country code lookup: OpenFlights uses full country names, need to convert to ISO
+  const COUNTRY_TO_ISO = {
+    "Italy":"IT","Spain":"ES","United Kingdom":"GB","France":"FR","Netherlands":"NL","Germany":"DE",
+    "Switzerland":"CH","Austria":"AT","Belgium":"BE","Ireland":"IE","Greece":"GR","Turkey":"TR",
+    "Portugal":"PT","Denmark":"DK","Sweden":"SE","Norway":"NO","Finland":"FI","Poland":"PL",
+    "Czech Republic":"CZ","Hungary":"HU","Romania":"RO","Bulgaria":"BG","Serbia":"RS","Croatia":"HR",
+    "Cyprus":"CY","Israel":"IL","Jordan":"JO","United Arab Emirates":"AE","Qatar":"QA","Kuwait":"KW",
+    "Bahrain":"BH","Oman":"OM","Egypt":"EG","Tunisia":"TN","Algeria":"DZ","Morocco":"MA",
+    "South Africa":"ZA","Kenya":"KE","Tanzania":"TZ","Ethiopia":"ET","Nigeria":"NG","Ghana":"GH",
+    "India":"IN","Sri Lanka":"LK","Maldives":"MV","Nepal":"NP","Malaysia":"MY","Thailand":"TH",
+    "Singapore":"SG","Hong Kong":"HK","Indonesia":"ID","Philippines":"PH","Vietnam":"VN","Japan":"JP",
+    "South Korea":"KR","Korea":"KR","Taiwan":"TW","China":"CN","Australia":"AU","New Zealand":"NZ",
+    "Fiji":"FJ","United States":"US","Canada":"CA","Mexico":"MX","Brazil":"BR","Chile":"CL",
+    "Argentina":"AR","Colombia":"CO","Peru":"PE","Iceland":"IS","Malta":"MT","Luxembourg":"LU",
+    "Estonia":"EE","Latvia":"LV","Lithuania":"LT","Slovenia":"SI","Slovakia":"SK","Albania":"AL",
+    "Macedonia":"MK","Bosnia and Herzegovina":"BA","Montenegro":"ME","Kosovo":"XK","Ukraine":"UA",
+    "Belarus":"BY","Moldova":"MD","Russia":"RU","Georgia":"GE","Armenia":"AM","Azerbaijan":"AZ",
+    "Kazakhstan":"KZ","Uzbekistan":"UZ","Kyrgyzstan":"KG","Tajikistan":"TJ","Turkmenistan":"TM",
+    "Afghanistan":"AF","Pakistan":"PK","Bangladesh":"BD","Myanmar":"MM","Burma":"MM","Cambodia":"KH",
+    "Laos":"LA","Brunei":"BN","Mongolia":"MN","Iran":"IR","Iraq":"IQ","Syria":"SY","Lebanon":"LB",
+    "Saudi Arabia":"SA","Yemen":"YE","Palestine":"PS","Libya":"LY","Sudan":"SD","South Sudan":"SS",
+    "Chad":"TD","Central African Republic":"CF","Cameroon":"CM","Gabon":"GA","Republic of the Congo":"CG",
+    "Congo (Kinshasa)":"CD","Congo (Brazzaville)":"CG","Angola":"AO","Namibia":"NA","Botswana":"BW",
+    "Zimbabwe":"ZW","Zambia":"ZM","Mozambique":"MZ","Malawi":"MW","Madagascar":"MG","Mauritius":"MU",
+    "Seychelles":"SC","Reunion":"RE","Comoros":"KM","Somalia":"SO","Djibouti":"DJ","Eritrea":"ER",
+    "Uganda":"UG","Rwanda":"RW","Burundi":"BI","Senegal":"SN","Mali":"ML","Niger":"NE","Guinea":"GN",
+    "Ivory Coast":"CI","Cote d'Ivoire":"CI","Liberia":"LR","Sierra Leone":"SL","Togo":"TG","Benin":"BJ",
+    "Burkina Faso":"BF","Mauritania":"MR","Guinea-Bissau":"GW","Cape Verde":"CV","Gambia":"GM",
+    "Iran":"IR","Papua New Guinea":"PG","Solomon Islands":"SB","Vanuatu":"VU","New Caledonia":"NC",
+    "French Polynesia":"PF","Samoa":"WS","American Samoa":"AS","Guam":"GU","Northern Mariana Islands":"MP",
+    "Micronesia":"FM","Palau":"PW","Marshall Islands":"MH","Kiribati":"KI","Tuvalu":"TV","Tonga":"TO",
+    "Cook Islands":"CK","Niue":"NU","Wallis and Futuna":"WF","Nauru":"NR","Panama":"PA","Costa Rica":"CR",
+    "Nicaragua":"NI","Honduras":"HN","El Salvador":"SV","Guatemala":"GT","Belize":"BZ","Cuba":"CU",
+    "Jamaica":"JM","Haiti":"HT","Dominican Republic":"DO","Puerto Rico":"PR","Bahamas":"BS",
+    "Trinidad and Tobago":"TT","Barbados":"BB","Grenada":"GD","Saint Lucia":"LC","Saint Vincent":"VC",
+    "Dominica":"DM","Antigua and Barbuda":"AG","Saint Kitts and Nevis":"KN","Aruba":"AW","Curacao":"CW",
+    "Sint Maarten":"SX","Guyana":"GY","Suriname":"SR","French Guiana":"GF","Uruguay":"UY","Paraguay":"PY",
+    "Bolivia":"BO","Ecuador":"EC","Venezuela":"VE","Falkland Islands":"FK","Greenland":"GL",
+    "Faroe Islands":"FO","Jersey":"JE","Guernsey":"GG","Isle of Man":"IM","Bermuda":"BM",
+    "Cayman Islands":"KY","Turks and Caicos Islands":"TC","British Virgin Islands":"VG","Virgin Islands":"VI",
+    "Anguilla":"AI","Montserrat":"MS","Guadeloupe":"GP","Martinique":"MQ","Saint Barthelemy":"BL",
+    "Saint Martin":"MF"
+  };
+
+  // Airline codes
+  const AIRLINES_FALLBACK = {
+    AZ:"ITA Airways",FR:"Ryanair",U2:"easyJet",W6:"Wizz Air",NO:"Neos",LH:"Lufthansa",LX:"Swiss",
+    OS:"Austrian Airlines",SN:"Brussels Airlines",AF:"Air France",KL:"KLM",BA:"British Airways",
+    IB:"Iberia",VY:"Vueling",V7:"Volotea",EI:"Aer Lingus",TP:"TAP Air Portugal",A3:"Aegean Airlines",
+    SK:"SAS",AY:"Finnair",DY:"Norwegian",BT:"airBaltic",PC:"Pegasus Airlines",XQ:"SunExpress",
+    HV:"Transavia",TO:"Transavia France",EW:"Eurowings",EN:"Air Dolomiti",UX:"Air Europa",
+    NT:"Binter Canarias",FI:"Icelandair",OG:"Play",LS:"Jet2",BE:"Flybe",VS:"Virgin Atlantic",
+    EK:"Emirates",QR:"Qatar Airways",EY:"Etihad Airways",WY:"Oman Air",GF:"Gulf Air",FZ:"flydubai",
+    G9:"Air Arabia",J9:"Jazeera Airways",XY:"flynas",ME:"Middle East Airlines",RJ:"Royal Jordanian",
+    SV:"Saudia",PK:"PIA",LY:"El Al",KU:"Kuwait Airways",ET:"Ethiopian Airlines",KQ:"Kenya Airways",
+    SA:"South African Airways",AT:"Royal Air Maroc",MS:"EgyptAir",TU:"Tunisair",AH:"Air Algerie",
+    WB:"RwandAir",MK:"Air Mauritius",SQ:"Singapore Airlines",MH:"Malaysia Airlines",AK:"AirAsia",
+    CX:"Cathay Pacific",JL:"Japan Airlines",NH:"ANA",KE:"Korean Air",OZ:"Asiana Airlines",
+    TG:"Thai Airways",FD:"Thai AirAsia",VN:"Vietnam Airlines",GA:"Garuda Indonesia",QZ:"Indonesia AirAsia",
+    JT:"Lion Air",AI:"Air India",UK:"Vistara",IX:"Air India Express","6E":"IndiGo",SG:"SpiceJet",
+    G8:"Go First",QP:"Akasa Air","5J":"Cebu Pacific",PR:"Philippine Airlines",BI:"Royal Brunei Airlines",
+    MU:"China Eastern",CA:"Air China",CZ:"China Southern",HU:"Hainan Airlines",ZH:"Shenzhen Airlines",
+    MF:"Xiamen Airlines","7C":"Jeju Air",LJ:"Jin Air",BX:"Air Busan",CI:"China Airlines",BR:"EVA Air",
+    TK:"Turkish Airlines",HX:"Hong Kong Airlines",UO:"Hong Kong Express",QG:"Citilink",
+    AA:"American Airlines",UA:"United Airlines",DL:"Delta Air Lines",WN:"Southwest Airlines",
+    B6:"JetBlue",AS:"Alaska Airlines",AC:"Air Canada",WS:"WestJet",F8:"Flair Airlines",
+    SY:"Sun Country Airlines",G4:"Allegiant Air",NK:"Spirit Airlines",F9:"Frontier Airlines",
+    HA:"Hawaiian Airlines",AM:"Aeromexico",VB:"VivaAerobus",Y4:"Volaris",CM:"Copa Airlines",
+    AV:"Avianca",LA:"LATAM Airlines",JJ:"LATAM Brasil",G3:"Gol",AD:"Azul",AR:"Aerolineas Argentinas",
+    QF:"Qantas",VA:"Virgin Australia",JQ:"Jetstar",NZ:"Air New Zealand",FJ:"Fiji Airways",
+    TN:"Air Tahiti Nui",PX:"Air Niugini"
+  };
+
+  // Fetch full OpenFlights database from GitHub CDN
+  try {
+    const url = 'https://cdn.jsdelivr.net/gh/jpatokal/openflights@master/data/airports.dat';
+    const res = await fetch(url);
+    const text = await res.text();
+
+    AIRPORTS = {};
+    FLAG = {};
+    const lines = text.split('\n');
+
+    for (const line of lines) {
+      if (!line.trim()) continue;
+      // CSV parser handling quoted fields
+      const fields = [];
+      let cur = '';
+      let inQuote = false;
+      for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        if (c === '"') { inQuote = !inQuote; }
+        else if (c === ',' && !inQuote) { fields.push(cur); cur = ''; }
+        else { cur += c; }
+      }
+      fields.push(cur);
+
+      if (fields.length < 8) continue;
+      const iata = fields[4];
+      if (!iata || iata === '\\N' || iata.length !== 3) continue;
+      const name = fields[1];
+      const city = fields[2];
+      const country = fields[3];
+      const lat = parseFloat(fields[6]);
+      const lon = parseFloat(fields[7]);
+      if (isNaN(lat) || isNaN(lon)) continue;
+
+      const iso = COUNTRY_TO_ISO[country] || '';
+      AIRPORTS[iata] = {
+        lat: Math.round(lat * 10000) / 10000,
+        lon: Math.round(lon * 10000) / 10000,
+        name: name,
+        city: city || name,
+        country: iso
+      };
+      if (iso && iso.length === 2 && !FLAG[iso]) {
+        FLAG[iso] = String.fromCodePoint(0x1F1E6 + iso.charCodeAt(0) - 65) +
+                    String.fromCodePoint(0x1F1E6 + iso.charCodeAt(1) - 65);
+      }
+    }
+
+    AIRLINES = AIRLINES_FALLBACK;
+
+    // Cache
+    try {
+      localStorage.setItem('meridian_airports_v2', JSON.stringify(AIRPORTS));
+      localStorage.setItem('meridian_airlines_v2', JSON.stringify(AIRLINES));
+    } catch(e) { console.warn('Cache too big:', e); }
+
+    console.log('Loaded', Object.keys(AIRPORTS).length, 'airports');
+  } catch(e) {
+    console.warn('Could not load OpenFlights data:', e);
+    // Minimal fallback
+    AIRPORTS = {
+      MXP:{lat:45.6306,lon:8.7281,name:"Milano Malpensa",city:"Milano",country:"IT"},
+      FCO:{lat:41.8003,lon:12.2389,name:"Roma Fiumicino",city:"Roma",country:"IT"},
+      AHO:{lat:40.6321,lon:8.2908,name:"Alghero Fertilia",city:"Alghero",country:"IT"},
+      LHR:{lat:51.477,lon:-0.4613,name:"London Heathrow",city:"Londra",country:"GB"},
+      JFK:{lat:40.6413,lon:-73.7781,name:"New York JFK",city:"New York",country:"US"},
+    };
+    FLAG = {IT:"🇮🇹",GB:"🇬🇧",US:"🇺🇸"};
+    AIRLINES = AIRLINES_FALLBACK;
+  }
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────────────────
+function haversine(lat1,lon1,lat2,lon2){const R=6371,dLat=(lat2-lat1)*Math.PI/180,dLon=(lon2-lon1)*Math.PI/180,a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));}
+function estimateDur(km){let s;if(km<300)s=500;else if(km<800)s=680;else if(km<2500)s=790;else if(km<6000)s=850;else s=870;return Math.round((km/s)*60)+25;}
+function calcDur(dep,arr){if(!dep||!arr)return null;const[dh,dm]=dep.split(":").map(Number),[ah,am]=arr.split(":").map(Number);let m=(ah*60+am)-(dh*60+dm);if(m<0)m+=1440;return m;}
+function gcPts(lat1,lon1,lat2,lon2,n){n=n||80;const r=d=>d*Math.PI/180,g=r=>r*180/Math.PI;const f1=r(lat1),l1=r(lon1),f2=r(lat2),l2=r(lon2);const d=2*Math.asin(Math.sqrt(Math.sin((f2-f1)/2)**2+Math.cos(f1)*Math.cos(f2)*Math.sin((l2-l1)/2)**2));if(d===0)return[[lat1,lon1]];const pts=[];for(let i=0;i<=n;i++){const t=i/n,A=Math.sin((1-t)*d)/Math.sin(d),B=Math.sin(t*d)/Math.sin(d);const x=A*Math.cos(f1)*Math.cos(l1)+B*Math.cos(f2)*Math.cos(l2);const y=A*Math.cos(f1)*Math.sin(l1)+B*Math.cos(f2)*Math.sin(l2);const z=A*Math.sin(f1)+B*Math.sin(f2);pts.push([g(Math.atan2(z,Math.sqrt(x*x+y*y))),g(Math.atan2(y,x))]);}return pts;}
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let state = { flights:[], tab:"map", sortBy:"date-desc", authTab:"login", loading:true, syncState:"ok", user:null };
+let globe = null;
+
+// ── BOOT ──────────────────────────────────────────────────────────────────────
+function dbRow(f) {
+  return {
+    id: f.id,
+    user_id: supa._user.id,
+    flight_num: f.flightNum||"",
+    date: f.date||"",
+    origin: f.origin,
+    destination: f.destination,
+    dep_time: f.depTime||"",
+    arr_time: f.arrTime||"",
+    delay: f.delay||0,
+    aircraft: f.aircraft||"",
+    airline: f.airline||"",
+    note: f.note||"",
+    distance_km: f.distanceKm||0,
+    duration_min: f.durationMin||0,
+    duration_estimated: !!f.durationEstimated
+  };
+}
+
+function fromRow(r) {
+  return {
+    id: r.id,
+    flightNum: r.flight_num,
+    date: r.date,
+    origin: r.origin,
+    destination: r.destination,
+    depTime: r.dep_time,
+    arrTime: r.arr_time,
+    delay: r.delay||0,
+    aircraft: r.aircraft,
+    airline: r.airline,
+    note: r.note,
+    distanceKm: r.distance_km,
+    durationMin: r.duration_min,
+    durationEstimated: r.duration_estimated
+  };
+}
+
+async function boot() {
+  setSync("syncing");
+  // Load airport/airline data first
+  await loadData();
+  const user = await supa.getUser();
+  if (user) {
+    state.user = user;
+    await loadFlights();
+  }
+  state.loading = false;
+  render();
+}
+
+async function loadFlights() {
+  try {
+    setSync("syncing");
+    const rows = await supa.getFlights();
+    state.flights = rows.map(fromRow);
+    setSync("ok");
+  } catch(e) {
+    setSync("error");
+  }
+}
+
+function setSync(s) {
+  state.syncState = s;
+  const el = document.getElementById("sync-dot");
+  if (el) { el.className = "sync-indicator " + s; }
+}
+
+// ── GLOBE ─────────────────────────────────────────────────────────────────────
+class Globe {
+  constructor(container) {
+    this.container = container; this.overlays = []; this.airportMeshes = []; this.rotVel = {x:0,y:0}; this.dragging = false; this.zoom = 2.8;
+    this._init();
+  }
+  _init() {
+    const W=this.container.clientWidth, H=this.container.clientHeight;
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(45,W/H,0.1,1000);
+    this.camera.position.z = this.zoom;
+    this.renderer = new THREE.WebGLRenderer({antialias:true,alpha:true});
+    this.renderer.setSize(W,H); this.renderer.setPixelRatio(Math.min(devicePixelRatio,2)); this.renderer.setClearColor(0,0);
+    this.container.appendChild(this.renderer.domElement);
+    this.scene.add(new THREE.AmbientLight(0xffffff,0.4));
+    const sun=new THREE.DirectionalLight(0xffffff,0.8); sun.position.set(5,3,5); this.scene.add(sun);
+    const mat=new THREE.MeshPhongMaterial({color:0x1a3050,specular:new THREE.Color(0x2a4a6a),shininess:8});
+    const loader=new THREE.TextureLoader(); loader.crossOrigin="anonymous";
+    const urls=["https://unpkg.com/three-globe@2.41.7/example/img/earth-blue-marble.jpg","https://cdn.jsdelivr.net/npm/three-globe@2.41.7/example/img/earth-blue-marble.jpg","https://unpkg.com/three-globe@2.41.7/example/img/earth-dark.jpg"];
+    const tryLoad=i=>{if(i>=urls.length){document.getElementById("globe-loading")&&document.getElementById("globe-loading").remove();return;}loader.load(urls[i],tex=>{mat.map=tex;mat.color=new THREE.Color(0xffffff);mat.needsUpdate=true;document.getElementById("globe-loading")&&document.getElementById("globe-loading").remove();},undefined,()=>tryLoad(i+1));};
+    tryLoad(0);
+    this.globe=new THREE.Mesh(new THREE.SphereGeometry(1,96,96),mat); this.globe.rotation.y = -1.734; this.globe.rotation.x = 0.655; this.scene.add(this.globe);
+    const atmMat=new THREE.ShaderMaterial({vertexShader:"varying vec3 vN;void main(){vN=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}",fragmentShader:"varying vec3 vN;void main(){float i=pow(0.7-dot(vN,vec3(0,0,1)),3.5);gl_FragColor=vec4(0.83,0.63,0.30,1.0)*i;}",blending:THREE.AdditiveBlending,side:THREE.BackSide,transparent:true});
+    this.scene.add(new THREE.Mesh(new THREE.SphereGeometry(1.025,96,96),atmMat));
+    const sv=[];for(let i=0;i<4000;i++){const t=Math.random()*Math.PI*2,p=Math.acos(2*Math.random()-1),r=80+Math.random()*20;sv.push(r*Math.sin(p)*Math.cos(t),r*Math.sin(p)*Math.sin(t),r*Math.cos(p));}
+    const sg=new THREE.BufferGeometry(); sg.setAttribute("position",new THREE.Float32BufferAttribute(sv,3));
+    this.scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xffffff,size:0.15,transparent:true,opacity:0.8})));
+    this._loadBorders();
+    this._setupInteraction(); this._animate();
+  }
+
+  async _loadBorders() {
+    try {
+      const res = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+      const world = await res.json();
+      // Convert TopoJSON to GeoJSON borders
+      const borders = this._topo2lines(world);
+      const mat = new THREE.LineBasicMaterial({ color: 0xe8ecf3, transparent: true, opacity: 0.12 });
+      borders.forEach(ring => {
+        if (ring.length < 2) return;
+        const pts = ring.map(([lon, lat]) => this._ll(lat, lon, 1.002));
+        const geo = new THREE.BufferGeometry().setFromPoints(pts);
+        const line = new THREE.Line(geo, mat);
+        this.globe.add(line);
+      });
+    } catch(e) {
+      console.warn('Borders not loaded:', e);
+    }
+  }
+
+  _topo2lines(topo) {
+    // Minimal TopoJSON arc decoder
+    const arcs = topo.arcs;
+    const scale = topo.transform ? topo.transform.scale : [1,1];
+    const translate = topo.transform ? topo.transform.translate : [0,0];
+
+    // Decode arcs
+    const decoded = arcs.map(arc => {
+      let x = 0, y = 0;
+      return arc.map(([dx, dy]) => {
+        x += dx; y += dy;
+        return [x * scale[0] + translate[0], y * scale[1] + translate[1]];
+      });
+    });
+
+    // Extract geometry from countries object
+    const rings = [];
+    const geoms = topo.objects.countries ? topo.objects.countries.geometries : [];
+    geoms.forEach(geom => {
+      const polys = geom.type === 'Polygon' ? [geom.arcs] :
+                    geom.type === 'MultiPolygon' ? geom.arcs : [];
+      polys.forEach(poly => {
+        poly.forEach(ring => {
+          const pts = [];
+          ring.forEach(idx => {
+            const arc = idx < 0 ? [...decoded[~idx]].reverse() : decoded[idx];
+            arc.forEach(pt => pts.push(pt));
+          });
+          if (pts.length > 1) rings.push(pts);
+        });
+      });
+    });
+    return rings;
+  }
+  _setupInteraction() {
+    const dom=this.renderer.domElement; let prev={x:0,y:0},dn={x:0,y:0},moved=false;
+    const onDown=(x,y)=>{this.dragging=true;prev={x,y};dn={x,y};moved=false;this.rotVel={x:0,y:0};};
+    const onMove=(x,y)=>{if(!this.dragging)return;if(Math.hypot(x-dn.x,y-dn.y)>5)moved=true;const dx=x-prev.x,dy=y-prev.y;this.globe.rotation.y+=dx*0.003;this.globe.rotation.x=Math.max(-Math.PI/2,Math.min(Math.PI/2,this.globe.rotation.x+dy*0.003));this.rotVel={x:dy*0.003,y:dx*0.003};prev={x,y};};
+    const onUp=(x,y)=>{if(this.dragging&&!moved&&x!==undefined)this._pick(x,y);else if(moved)hideAirportInfo();this.dragging=false;};
+    dom.addEventListener("mousedown",e=>onDown(e.clientX,e.clientY));
+    window.addEventListener("mousemove",e=>onMove(e.clientX,e.clientY));
+    window.addEventListener("mouseup",e=>onUp(e.clientX,e.clientY));
+    dom.addEventListener("wheel",e=>{e.preventDefault();this.zoom=Math.max(1.4,Math.min(8,this.zoom+e.deltaY*0.002));this.camera.position.z=this.zoom;},{passive:false});
+    let pinch=null;
+    dom.addEventListener("touchstart",e=>{if(e.touches.length===1)onDown(e.touches[0].clientX,e.touches[0].clientY);else if(e.touches.length===2){const dx=e.touches[0].clientX-e.touches[1].clientX,dy=e.touches[0].clientY-e.touches[1].clientY;pinch={dist:Math.hypot(dx,dy),zoom:this.zoom};this.dragging=false;}},{passive:true});
+    dom.addEventListener("touchmove",e=>{e.preventDefault();if(e.touches.length===1&&!pinch)onMove(e.touches[0].clientX,e.touches[0].clientY);else if(e.touches.length===2&&pinch){const dx=e.touches[0].clientX-e.touches[1].clientX,dy=e.touches[0].clientY-e.touches[1].clientY;this.zoom=Math.max(1.4,Math.min(8,pinch.zoom*(pinch.dist/Math.hypot(dx,dy))));this.camera.position.z=this.zoom;}},{passive:false});
+    dom.addEventListener("touchend",e=>{const t=e.changedTouches[0];onUp(t&&t.clientX,t&&t.clientY);pinch=null;});
+    window.addEventListener("resize",()=>this.resize());
+  }
+  _animate(){
+    this._raf=requestAnimationFrame(()=>this._animate());
+    if(!this.dragging){this.globe.rotation.y+=this.rotVel.y*0.92;this.globe.rotation.x=Math.max(-Math.PI/2,Math.min(Math.PI/2,this.globe.rotation.x+this.rotVel.x*0.92));this.rotVel.x*=0.92;this.rotVel.y*=0.92;}
+    this.renderer.render(this.scene,this.camera);
+  }
+  resize(){if(!this.container.isConnected)return;const W=this.container.clientWidth,H=this.container.clientHeight;this.camera.aspect=W/H;this.camera.updateProjectionMatrix();this.renderer.setSize(W,H);}
+  _ll(lat,lon,r){r=r||1;const phi=(90-lat)*Math.PI/180,theta=(lon+180)*Math.PI/180;return new THREE.Vector3(-r*Math.sin(phi)*Math.cos(theta),r*Math.cos(phi),r*Math.sin(phi)*Math.sin(theta));}
+  setFlights(flights) {
+    this.overlays.forEach(o=>this.globe.remove(o)); this.overlays=[]; this.airportMeshes=[];
+    const visited=new Set(flights.flatMap(f=>[f.origin,f.destination]));
+    const pickGeo=new THREE.SphereGeometry(0.028,8,8),pickMat=new THREE.MeshBasicMaterial({visible:false});
+    Object.entries(AIRPORTS).forEach(([iata,ap])=>{
+      if(!visited.has(iata))return;
+      const ring=new THREE.Mesh(new THREE.SphereGeometry(0.012,12,12),new THREE.MeshBasicMaterial({color:0xffffff}));
+      ring.position.copy(this._ll(ap.lat,ap.lon,1.003)); this.globe.add(ring); this.overlays.push(ring);
+      const dot=new THREE.Mesh(new THREE.SphereGeometry(0.009,12,12),new THREE.MeshBasicMaterial({color:0xd4a24e}));
+      dot.position.copy(this._ll(ap.lat,ap.lon,1.008)); this.globe.add(dot); this.overlays.push(dot);
+      const glow=new THREE.Mesh(new THREE.SphereGeometry(0.020,12,12),new THREE.MeshBasicMaterial({color:0xd4a24e,transparent:true,opacity:0.25}));
+      glow.position.copy(this._ll(ap.lat,ap.lon,1.005)); this.globe.add(glow); this.overlays.push(glow);
+      const pick=new THREE.Mesh(pickGeo,pickMat); pick.position.copy(this._ll(ap.lat,ap.lon,1.005)); pick.userData.iata=iata;
+      this.globe.add(pick); this.overlays.push(pick); this.airportMeshes.push(pick);
+    });
+    const rc={};
+    flights.forEach(f=>{const k=[f.origin,f.destination].sort().join("-");rc[k]=(rc[k]||0)+1;});
+    Object.entries(rc).forEach(([key,count])=>{
+      const[a,b]=key.split("-"),ap1=AIRPORTS[a],ap2=AIRPORTS[b]; if(!ap1||!ap2)return;
+      const pts=gcPts(ap1.lat,ap1.lon,ap2.lat,ap2.lon,80),arcPts=[];
+      for(let i=0;i<pts.length;i++){const t=i/(pts.length-1),h=Math.sin(Math.PI*t)*0.04;arcPts.push(this._ll(pts[i][0],pts[i][1],1.01+h));}
+      const op=Math.min(0.9+count*0.05,1);
+      [0,0.0015,-0.0015,0.0008,-0.0008].forEach((off,i)=>{
+        const ps=arcPts.map(p=>p.clone().normalize().multiplyScalar(p.length()+off));
+        const g=new THREE.BufferGeometry().setFromPoints(ps);
+        const m=new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:i===0?op:op*0.5});
+        const l=new THREE.Line(g,m); this.globe.add(l); this.overlays.push(l);
+      });
+    });
+  }
+  _pick(cx,cy){
+    const rect=this.renderer.domElement.getBoundingClientRect();
+    const mouse=new THREE.Vector2(((cx-rect.left)/rect.width)*2-1,-((cy-rect.top)/rect.height)*2+1);
+    const rc=new THREE.Raycaster(); rc.setFromCamera(mouse,this.camera);
+    const hits=rc.intersectObjects(this.airportMeshes,false); if(!hits.length){hideAirportInfo();return;}
+    const front=hits.filter(h=>{const wp=new THREE.Vector3();h.object.getWorldPosition(wp);return wp.normalize().dot(new THREE.Vector3().subVectors(this.camera.position,h.point).normalize())>0;});
+    if(!front.length){hideAirportInfo();return;}
+    showAirportInfo(front[0].object.userData.iata,cx,cy);
+  }
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function render() {
+  if (state.loading) { document.getElementById("root").innerHTML = '<div class="auth-wrap"><div style="color:#d4a24e;font-size:11px;letter-spacing:.2em;text-transform:uppercase">Carico...</div></div>'; return; }
+  if (!state.user) { renderAuth(); return; }
+  renderApp();
+}
+
+function renderAuth() {
+  const isLogin = state.authTab === "login";
+  const isReset = state.authTab === "reset";
+  document.getElementById("root").innerHTML =
+    '<div class="auth-wrap">' +
+      '<div class="auth-card">' +
+        '<div class="auth-logo"><div class="auth-logo-mark"><svg viewBox="0 0 240 240" fill="none" width="52" height="52"><path d="M 44 172 C 84 50 156 50 196 172" stroke="#f4a05c" stroke-width="3.5" stroke-linecap="round"/><circle cx="44" cy="172" r="7" fill="#f4a05c"/><circle cx="196" cy="172" r="8" fill="none" stroke="#f4a05c" stroke-width="3.5"/></svg></div><span class="auth-logo-name">Meridian</span><span class="auth-logo-sub">Il tuo diario di volo</span></div>' +
+        '<div class="auth-panel">'+
+        '<div class="auth-tabs">' +
+          '<button class="auth-tab'+(isLogin&&!isReset?" active":"")+'" onclick="state.authTab=\'login\';renderAuth()">Accedi</button>' +
+          '<button class="auth-tab'+(!isLogin&&!isReset?" active":"")+'" onclick="state.authTab=\'signup\';renderAuth()">Registrati</button>' +
+        '</div>' +
+        '<div class="auth-fields" id="auth-fields">' +
+          '<div class="auth-field"><label>Email</label><input type="email" id="auth-email" placeholder="nome@email.com" onkeydown="if(event.key===\'Enter\')submitAuth()" /></div>' +
+          (isReset ? "" : '<div class="auth-field"><label>Password</label><input type="password" id="auth-pass" placeholder="••••••••" onkeydown="if(event.key===\'Enter\')submitAuth()" /></div>') +
+        '</div>' +
+        '<div id="auth-msg"></div>' +
+        '<button class="btn-auth" id="auth-btn" onclick="submitAuth()">' + (isReset ? "Invia email reset" : isLogin ? "Accedi" : "Crea account") + '</button>' +
+        (isLogin ? '<div class="auth-footer"><button onclick="state.authTab=\'reset\';renderAuth()">Password dimenticata?</button></div>' : "") +
+        (!isLogin&&!isReset ? '<div style="color:#3a3530;font-size:10px;text-align:center;letter-spacing:.05em;line-height:1.6;padding-top:8px">Registrandoti accetti di usare questa app solo per uso personale.</div>' : "") +
+      '</div>' +
+    '</div>';
+  setTimeout(() => document.getElementById("auth-email") && document.getElementById("auth-email").focus(), 50);
+}
+
+async function submitAuth() {
+  const btn = document.getElementById("auth-btn");
+  const msg = document.getElementById("auth-msg");
+  const email = (document.getElementById("auth-email")||{}).value||"";
+  const pass = (document.getElementById("auth-pass")||{}).value||"";
+  if (!email) { msg.innerHTML = '<div class="auth-error">Inserisci la tua email</div>'; return; }
+  btn.disabled = true; btn.textContent = "..."; msg.innerHTML = "";
+  try {
+    if (state.authTab === "reset") {
+      await supa.resetPassword(email);
+      msg.innerHTML = '<div class="auth-msg">Email inviata! Controlla la casella e clicca il link per reimpostare la password.</div>';
+      btn.disabled = false; btn.textContent = "Invia email reset"; return;
+    }
+    if (!pass) { msg.innerHTML = '<div class="auth-error">Inserisci la password</div>'; btn.disabled=false; btn.textContent=state.authTab==="login"?"Accedi":"Crea account"; return; }
+    if (state.authTab === "signup") {
+      msg.innerHTML = '<div class="auth-msg" style="color:#a89f8c">Contatto Supabase...</div>';
+      const r = await fetch(SUPA_URL + "/auth/v1/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "apikey": SUPA_KEY },
+        body: JSON.stringify({ email, password: pass })
+      });
+      const d = await r.json();
+      msg.innerHTML = '<div class="auth-msg" style="color:#a89f8c;font-size:10px;word-break:break-all">Risposta: ' + JSON.stringify(d).slice(0,300) + '</div>';
+      if (d.error || d.msg) throw new Error(d.error_description || d.error || d.msg || "Errore registrazione");
+      msg.innerHTML = '<div class="auth-msg">Registrazione avvenuta! Controlla la tua email e clicca il link per confermare l\'account, poi accedi.</div>';
+      btn.disabled = false; btn.textContent = "Crea account"; return;
+    }
+    await supa.signIn(email, pass);
+    state.user = supa._user;
+    await loadFlights();
+    state.tab = "map";
+    render();
+  } catch(e) {
+    msg.innerHTML = '<div class="auth-error">ERRORE: ' + e.message + '</div>';
+    btn.disabled = false; btn.textContent = state.authTab === "login" ? "Accedi" : "Crea account";
+  }
+}
+
+function renderApp() {
+  const totalKm=state.flights.reduce((s,f)=>s+(f.distanceKm||0),0);
+  const totalMin=state.flights.reduce((s,f)=>s+(f.durationMin||0),0);
+  const totalDelay=state.flights.reduce((s,f)=>s+(f.delay||0),0);
+  const airports=new Set(state.flights.flatMap(f=>[f.origin,f.destination]));
+  const countries=new Set(state.flights.flatMap(f=>[AIRPORTS[f.origin]&&AIRPORTS[f.origin].country,AIRPORTS[f.destination]&&AIRPORTS[f.destination].country].filter(Boolean)));
+  let body="";
+  if(state.tab==="map") body=renderMap(totalKm,totalMin,airports,countries);
+  else if(state.tab==="list") body=renderList();
+  else if(state.tab==="stats") body=renderStats(totalKm,totalMin,totalDelay,airports,countries);
+  else if(state.tab==="passport") body=renderPassport(totalKm,totalMin,airports,countries);
+  else if(state.tab==="rewards") body=renderRewards(totalKm,totalMin,airports,countries);
+  else if(state.tab==="rewards") body=renderRewards(totalKm,totalMin,airports,countries);
+  else if(state.tab==="add") body=renderForm();
+  const tabs=["map","list","stats","rewards","passport","add"];
+  const labels={"map":"Globo","list":"Voli","stats":"Statistiche","rewards":"Rewards","passport":"Passaporto","add":"Nuovo volo"};
+  document.getElementById("root").innerHTML =
+    '<div class="app-wrap">' +
+      '<div class="header">' +
+        '<div class="brand"><div class="brand-mark"><svg viewBox="0 0 32 32" fill="none" width="22" height="22"><path d="M 5.5 23 C 11 6.5 21 6.5 26.5 23" stroke="#f4a05c" stroke-width="2.4" stroke-linecap="round"/><circle cx="5.5" cy="23" r="2" fill="#f4a05c"/><circle cx="26.5" cy="23" r="2.4" fill="none" stroke="#f4a05c" stroke-width="2.4"/></svg></div>Meridian</div>' +
+        '<div class="header-right">' +
+          '<div id="sync-dot" class="sync-indicator '+state.syncState+'"></div>' +
+          '<button class="btn-logout" onclick="doLogout()" title="Esci">&#9654;</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="content"><div class="page">'+body+'</div></div>' +
+      '<nav class="tabbar">' +
+        '<button class="tabbar-item'+(state.tab==="map"?" active":"")+'" onclick="setTab(\'map\')">' +
+          '<span class="tabbar-icon">&#127760;</span><span class="tabbar-label">Mappa</span></button>' +
+        '<button class="tabbar-item'+(state.tab==="list"?" active":"")+'" onclick="setTab(\'list\')">' +
+          '<span class="tabbar-icon">&#9776;</span><span class="tabbar-label">Voli</span></button>' +
+        '<div class="tabbar-center">' +
+          '<button class="tabbar-add" onclick="setTab(\'add\')">+</button>' +
+          '<button class="tabbar-item'+(state.tab==="stats"?" active":"")+'" onclick="setTab(\'stats\')" style="padding-top:4px">' +
+            '<span class="tabbar-icon">&#9656;</span><span class="tabbar-label">Stats</span></button>' +
+        '</div>' +
+        '<button class="tabbar-item'+(state.tab==="rewards"?" active":"")+'" onclick="setTab(\'rewards\')">' +
+          '<span class="tabbar-icon">&#9733;</span><span class="tabbar-label">Rewards</span></button>' +
+        '<button class="tabbar-item'+(state.tab==="passport"?" active":"")+'" onclick="setTab(\'passport\')">' +
+          '<span class="tabbar-icon">&#9674;</span><span class="tabbar-label">Passport</span></button>' +
+      '</nav>' +
+    '</div>' +
+    '<div class="share-toast" id="share-toast">Salvato!</div>';
+
+  if(state.tab==="map"){
+    const c=document.getElementById("globe");
+    if(c&&!globe){globe=new Globe(c);}
+    else if(c&&globe){c.appendChild(globe.renderer.domElement);document.getElementById("globe-loading")&&document.getElementById("globe-loading").remove();globe.resize();}
+    if(globe)globe.setFlights(state.flights);
+  }
+  if(state.tab==="add")setupAddForm();
+}
+
+async function doLogout() {
+  supa.signOut(); state.user=null; state.flights=[];
+  if(globe){globe.renderer.dispose();globe=null;}
+  render();
+}
+
+// ── COMPONENTS ────────────────────────────────────────────────────────────────
+function statCard(label,value,unit,sub){return '<div class="stat"><div class="stat-value">'+value+(unit?'<span class="unit">'+unit+'</span>':'')+'</div><div class="stat-label">'+label+'</div>'+(sub?'<div class="stat-sub">'+sub+'</div>':'')+'</div>';}
+
+function renderMap(totalKm,totalMin,airports,countries){
+  const empty=state.flights.length===0;
+  return '<div id="globe"><div class="globe-hint">trascina per ruotare &mdash; scroll/pinch per zoom</div><div id="globe-loading" class="globe-loading">Loading Earth</div><div id="airport-info" class="airport-info"></div></div>' +
+  (empty?'<div class="empty"><div class="empty-title">Nessun volo registrato</div><div>Aggiungi il primo per iniziare</div><button class="btn-primary" style="max-width:220px;margin-top:24px" onclick="setTab(\'add\')">Nuovo volo</button></div>':
+  '<div class="stats-grid">'+statCard("Voli totali",state.flights.length)+statCard("Distanza",Math.round(totalKm).toLocaleString("it-IT"),"km")+statCard("Tempo di volo",totalMin?Math.floor(totalMin/60):"&#8212;",totalMin?"h "+String(totalMin%60)+"m":"")+statCard("Aeroporti",airports.size)+statCard("Paesi",countries.size)+'</div>');
+}
+
+function renderList(){
+  if(!state.flights.length)return'<div class="empty"><div class="empty-title">Log vuoto</div><a href="#" onclick="setTab(\'add\');return false" style="color:#d4a24e;text-decoration:none;border-bottom:1px solid #d4a24e">registra il primo volo &rarr;</a></div>';
+  const sorted=[...state.flights].sort((a,b)=>{if(state.sortBy==="date-desc")return b.date.localeCompare(a.date);if(state.sortBy==="date-asc")return a.date.localeCompare(b.date);if(state.sortBy==="distance")return(b.distanceKm||0)-(a.distanceKm||0);if(state.sortBy==="delay")return(b.delay||0)-(a.delay||0);return 0;});
+  return '<div class="sort-bar"><span class="sort-count"><strong>'+state.flights.length+'</strong> voli</span><select class="sort-select" onchange="setSortBy(this.value)"><option value="date-desc"'+(state.sortBy==="date-desc"?" selected":"")+'>Recenti</option><option value="date-asc"'+(state.sortBy==="date-asc"?" selected":"")+'>Pi&ugrave; vecchi</option><option value="distance"'+(state.sortBy==="distance"?" selected":"")+'>Distanza</option><option value="delay"'+(state.sortBy==="delay"?" selected":"")+'>Ritardo</option></select></div>'+sorted.map(renderFlightRow).join("");
+}
+
+function renderFlightRow(f){
+  const ap1=AIRPORTS[f.origin],ap2=AIRPORTS[f.destination];
+  const dh=f.durationMin!=null?Math.floor(f.durationMin/60):null,dm=f.durationMin!=null?f.durationMin%60:null;
+  const dt=f.date?new Date(f.date).toLocaleDateString("it-IT",{day:"2-digit",month:"short",year:"numeric"}).toUpperCase():"";
+  const dur=dh!==null?(dh+"h "+String(dm).padStart(2,"0")+"m"+(f.durationEstimated?" ~":"")):"";
+  return '<div class="flight-card">'+
+    '<div class="flight-card-header">'+
+      '<div><div class="flight-card-num">'+(f.flightNum||"&#8212;")+'</div>'+(f.airline?'<div style="font-size:9px;color:#5a5248;letter-spacing:.05em;margin-top:2px">'+f.airline+'</div>':'')+  '</div>'+
+      '<div class="flight-card-date">'+dt+'</div>'+
+    '</div>'+
+    '<div class="flight-card-route">'+
+      '<div class="route-ap"><div class="route-ap-code">'+f.origin+'</div><div class="route-ap-city">'+(ap1&&ap1.city||"")+'</div>'+(f.depTime?'<div class="route-ap-time">'+f.depTime+'</div>':"")+  '</div>'+
+      '<div class="route-mid"><div class="route-mid-line"></div>'+(dur?'<div class="route-mid-dur">'+dur+'</div>':"")+  '</div>'+
+      '<div class="route-ap route-ap-right"><div class="route-ap-code">'+f.destination+'</div><div class="route-ap-city">'+(ap2&&ap2.city||"")+'</div>'+(f.arrTime?'<div class="route-ap-time">'+f.arrTime+'</div>':"")+  '</div>'+
+    '</div>'+
+    '<div class="flight-card-footer">'+
+      '<div class="fmeta"><div class="fmeta-val">'+(f.distanceKm&&f.distanceKm.toLocaleString("it-IT")||"—")+' km</div><div class="fmeta-lbl">distanza</div></div>'+
+      (f.delay>0?'<div class="fmeta"><div class="fmeta-val fmeta-delay">+'+f.delay+"'</div><div class=\"fmeta-lbl\">ritardo</div></div>":"")+
+      (f.aircraft?'<div class="fmeta"><div class="fmeta-val">'+f.aircraft+'</div><div class="fmeta-lbl">aereo</div></div>':"")+
+      '<button class="btn-del" onclick="doDeleteFlight('+f.id+')">&times;</button>'+
+    '</div>'+
+  '</div>';
+}
+
+
+function renderStats(totalKm,totalMin,totalDelay,airports,countries){
+  if(!state.flights.length)return'<div class="empty"><div class="empty-title">Nessuna statistica</div><div>Aggiungi voli per iniziare</div></div>';
+  const acnt=state.flights.flatMap(f=>[f.origin,f.destination]).reduce((a,x)=>{a[x]=(a[x]||0)+1;return a;},{});
+  const top5=Object.entries(acnt).sort((a,b)=>b[1]-a[1]).slice(0,5),mx=top5[0]&&top5[0][1]||1;
+  const acMap=state.flights.filter(f=>f.aircraft).reduce((a,f)=>{a[f.aircraft]=(a[f.aircraft]||0)+1;return a;},{});
+  const topAC=Object.entries(acMap).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const routes=new Set(state.flights.map(f=>[f.origin,f.destination].sort().join("-"))).size;
+  return'<div class="stats-grid">'+statCard("Voli",state.flights.length)+statCard("Distanza",Math.round(totalKm/1000).toLocaleString("it-IT"),"k km")+statCard("In volo",totalMin?Math.floor(totalMin/60):"&#8212;",totalMin?"h":"")+statCard("Aeroporti",airports.size)+statCard("Paesi",countries.size)+statCard("Rotte",routes)+statCard("Media",Math.round(totalKm/state.flights.length).toLocaleString("it-IT"),"km")+'</div>'+
+  (top5.length?'<div class="section-card"><div class="section-title">Aeroporti pi&ugrave; frequentati</div>'+top5.map(([iata,cnt])=>'<div class="bar-row"><span class="bar-iata">'+iata+'</span><div class="bar-container"><div class="bar-label">'+(AIRPORTS[iata]&&AIRPORTS[iata].city||iata)+'</div><div class="bar-track"><div class="bar-fill" style="width:'+((cnt/mx)*100)+'%"></div></div></div><span class="bar-count">'+cnt+'</span></div>').join("")+'</div>':"")+(topAC.length?'<div class="section-card"><div class="section-title">Aeromobili volati</div><div style="display:flex;gap:8px;flex-wrap:wrap">'+topAC.map(([ac,cnt])=>'<div class="chip"><span class="chip-code">'+ac+'</span><span class="chip-count">&times;'+cnt+'</span></div>').join("")+'</div></div>':"");
+}
+
+function renderRewards(totalKm, totalMin, airports, countries) {
+  // ── Dati utili ──────────────────────────────────────────────────────────
+  const totalHours = totalMin / 60;
+  const totalFlights = state.flights.length;
+
+  // Continenti per paese
+  const CONTINENT = {
+    IT:"EU",ES:"EU",GB:"EU",FR:"EU",NL:"EU",DE:"EU",CH:"EU",AT:"EU",BE:"EU",IE:"EU",
+    GR:"EU",TR:"EU",PT:"EU",DK:"EU",SE:"EU",NO:"EU",FI:"EU",PL:"EU",CZ:"EU",HU:"EU",
+    RO:"EU",BG:"EU",RS:"EU",HR:"EU",CY:"EU",
+    EG:"AF",TN:"AF",DZ:"AF",MA:"AF",ZA:"AF",KE:"AF",TZ:"AF",ET:"AF",NG:"AF",GH:"AF",
+    IL:"AS",JO:"AS",AE:"AS",QA:"AS",KW:"AS",BH:"AS",OM:"AS",IN:"AS",LK:"AS",MV:"AS",
+    NP:"AS",MY:"AS",TH:"AS",SG:"AS",HK:"AS",ID:"AS",PH:"AS",VN:"AS",JP:"AS",KR:"AS",
+    TW:"AS",CN:"AS",
+    AU:"OC",NZ:"OC",FJ:"OC",
+    US:"AM",CA:"AM",MX:"AM",BR:"AM",CL:"AM",AR:"AM",CO:"AM",PE:"AM",
+  };
+
+  const visitedContinents = new Set(
+    state.flights.flatMap(f => [AIRPORTS[f.origin], AIRPORTS[f.destination]])
+      .filter(Boolean).map(ap => CONTINENT[ap.country]).filter(Boolean)
+  );
+
+  // Aeroporti isola
+  const ISLAND_AP = new Set(["PMI","IBZ","MYK","JTR","CFU","RHO","HER","MLE","DPS","MNL","NAN","OOL","OLB","CAG","CTA","PMO","OKA","CJU","TPE","HKG","MFM","SIN","NAN"]);
+  const islandVisited = new Set(state.flights.flatMap(f=>[f.origin,f.destination]).filter(i=>ISLAND_AP.has(i))).size;
+
+  // Compagnie low cost
+  const LOWCOST = new Set(["FR","U2","W6","V7","PC","XQ","AK","DY"]);
+  const lowCostFlights = state.flights.filter(f => {
+    if (!f.flightNum || f.flightNum.length < 2) return false;
+    const p = f.flightNum.replace(/[0-9]/g,"").toUpperCase().slice(0,2);
+    return LOWCOST.has(p);
+  }).length;
+
+  // Stessa rotta 5 volte
+  const routeCount = {};
+  state.flights.forEach(f => { const k=[f.origin,f.destination].sort().join("-"); routeCount[k]=(routeCount[k]||0)+1; });
+  const maxRoute = Math.max(0, ...Object.values(routeCount));
+
+  // Decolli per orario
+  const earlyFlights = state.flights.filter(f => { if(!f.depTime) return false; const h=parseInt(f.depTime.split(":")[0]); return h < 6; }).length;
+  const lateFlights = state.flights.filter(f => { if(!f.depTime) return false; const h=parseInt(f.depTime.split(":")[0]); return h >= 0 && h < 4; }).length;
+
+  // Voli brevi/lunghi
+  const shortFlights = state.flights.filter(f => f.durationMin && f.durationMin <= 45 && !f.durationEstimated).length;
+  const longFlights = state.flights.filter(f => f.durationMin && f.durationMin >= 600).length;
+
+  // Scali unici
+  const uniqueAirports = airports.size;
+
+  // ── Definizione badge ────────────────────────────────────────────────────
+  const BADGES = [
+    // DISTANZA
+    { id:"rookie",      cat:"Distanza",   icon:"🌱", name:"Rookie",          desc:"Primi 1.000 km",       unlocked: totalKm>=1000,    progress: Math.min(totalKm/1000,1) },
+    { id:"frequent",    cat:"Distanza",   icon:"🛫", name:"Frequent Flyer",  desc:"10.000 km percorsi",   unlocked: totalKm>=10000,   progress: Math.min(totalKm/10000,1) },
+    { id:"globetrotter",cat:"Distanza",   icon:"🌍", name:"Globe Trotter",   desc:"50.000 km percorsi",   unlocked: totalKm>=50000,   progress: Math.min(totalKm/50000,1) },
+    { id:"strato",      cat:"Distanza",   icon:"🚀", name:"Stratospheric",   desc:"100.000 km percorsi",  unlocked: totalKm>=100000,  progress: Math.min(totalKm/100000,1) },
+    { id:"lightspeed",  cat:"Distanza",   icon:"⭐", name:"Light Speed",     desc:"250.000 km percorsi",  unlocked: totalKm>=250000,  progress: Math.min(totalKm/250000,1) },
+    // ORE
+    { id:"boarding",    cat:"Ore in volo",icon:"⏱", name:"Boarding",        desc:"10 ore in volo",       unlocked: totalHours>=10,   progress: Math.min(totalHours/10,1) },
+    { id:"incruise",    cat:"Ore in volo",icon:"🎧", name:"In Cruise",       desc:"50 ore in volo",       unlocked: totalHours>=50,   progress: Math.min(totalHours/50,1) },
+    { id:"redeye",      cat:"Ore in volo",icon:"🌙", name:"Red Eye",         desc:"100 ore in volo",      unlocked: totalHours>=100,  progress: Math.min(totalHours/100,1) },
+    { id:"copilot",     cat:"Ore in volo",icon:"👨‍✈️",name:"Co-Pilot",        desc:"250 ore in volo",      unlocked: totalHours>=250,  progress: Math.min(totalHours/250,1) },
+    { id:"autopilot",   cat:"Ore in volo",icon:"🛸", name:"Autopilot",       desc:"500 ore in volo",      unlocked: totalHours>=500,  progress: Math.min(totalHours/500,1) },
+    // VOLI
+    { id:"babywings",   cat:"Voli",       icon:"🐣", name:"Baby Wings",      desc:"Primo volo",           unlocked: totalFlights>=1,  progress: Math.min(totalFlights/1,1) },
+    { id:"backpacker",  cat:"Voli",       icon:"🎒", name:"Backpacker",      desc:"10 voli",              unlocked: totalFlights>=10, progress: Math.min(totalFlights/10,1) },
+    { id:"roadwarrior", cat:"Voli",       icon:"📋", name:"Road Warrior",    desc:"25 voli",              unlocked: totalFlights>=25, progress: Math.min(totalFlights/25,1) },
+    { id:"elite",       cat:"Voli",       icon:"🏆", name:"Elite",           desc:"50 voli",              unlocked: totalFlights>=50, progress: Math.min(totalFlights/50,1) },
+    { id:"diamond",     cat:"Voli",       icon:"💎", name:"Diamond",         desc:"100 voli",             unlocked: totalFlights>=100,progress: Math.min(totalFlights/100,1) },
+    // CONTINENTI
+    { id:"oldworld",    cat:"Continenti", icon:"🌍", name:"Old World",       desc:"Europa e Africa",      unlocked: visitedContinents.has("EU")&&visitedContinents.has("AF"), progress: ([...["EU","AF"]].filter(c=>visitedContinents.has(c)).length)/2 },
+    { id:"fareast",     cat:"Continenti", icon:"🌏", name:"Far East",        desc:"Asia visitata",        unlocked: visitedContinents.has("AS"), progress: visitedContinents.has("AS")?1:0 },
+    { id:"newworld",    cat:"Continenti", icon:"🌎", name:"New World",       desc:"Americhe visitate",    unlocked: visitedContinents.has("AM"), progress: visitedContinents.has("AM")?1:0 },
+    { id:"pangea",      cat:"Continenti", icon:"🗺️", name:"Pangea",          desc:"5 continenti",         unlocked: visitedContinents.size>=5,  progress: Math.min(visitedContinents.size/5,1) },
+    { id:"atlas",       cat:"Continenti", icon:"🌐", name:"Atlas",           desc:"6 continenti + Oceania",unlocked: visitedContinents.size>=6, progress: Math.min(visitedContinents.size/6,1) },
+    // SPECIALI
+    { id:"whyawake",    cat:"Speciali",   icon:"😴", name:"Why Am I Awake",  desc:"Decollo prima delle 6:00", unlocked: earlyFlights>=1, progress: Math.min(earlyFlights,1) },
+    { id:"dracula",     cat:"Speciali",   icon:"🧛", name:"Dracula Mode",    desc:"Decollo dopo mezzanotte",  unlocked: lateFlights>=1,  progress: Math.min(lateFlights,1) },
+    { id:"speedrun",    cat:"Speciali",   icon:"⚡", name:"Speedrun",        desc:"Volo sotto i 45 minuti",   unlocked: shortFlights>=1, progress: Math.min(shortFlights,1) },
+    { id:"deadlegs",    cat:"Speciali",   icon:"🦴", name:"Dead Legs",       desc:"Volo sopra le 10 ore",     unlocked: longFlights>=1,  progress: Math.min(longFlights,1) },
+    { id:"youagain",    cat:"Speciali",   icon:"🔁", name:"You Again?",      desc:"Stessa rotta 5 volte",     unlocked: maxRoute>=5,     progress: Math.min(maxRoute/5,1) },
+    { id:"lowcost",     cat:"Speciali",   icon:"🤑", name:"Low Cost Survivor",desc:"5 voli low cost",         unlocked: lowCostFlights>=5,progress: Math.min(lowCostFlights/5,1) },
+    { id:"beachmode",   cat:"Speciali",   icon:"🏝️", name:"Beach Mode",      desc:"5 destinazioni isola",     unlocked: islandVisited>=5, progress: Math.min(islandVisited/5,1) },
+    { id:"layoverpro",  cat:"Speciali",   icon:"🥂", name:"Layover Pro",     desc:"10 aeroporti diversi",     unlocked: uniqueAirports>=10,progress: Math.min(uniqueAirports/10,1) },
+    { id:"hubaddict",   cat:"Speciali",   icon:"📍", name:"Hub Addict",      desc:"Stesso aeroporto 10 volte", unlocked: (()=>{ const cnt=state.flights.flatMap(f=>[f.origin,f.destination]).reduce((a,x)=>{a[x]=(a[x]||0)+1;return a;},{}); return Math.max(0,...Object.values(cnt).map(Number))>=10; })(),
+      progress: (()=>{ const cnt=state.flights.flatMap(f=>[f.origin,f.destination]).reduce((a,x)=>{a[x]=(a[x]||0)+1;return a;},{}); return Math.min((Math.max(0,...Object.values(cnt).map(Number)))/10,1); })() },
+  ];
+
+  const unlockedCount = BADGES.filter(b => b.unlocked).length;
+  const cats = [...new Set(BADGES.map(b => b.cat))];
+
+  const badgeHTML = (b) => {
+    const pct = Math.round(b.progress * 100);
+    return '<div class="badge ' + (b.unlocked ? "unlocked" : "locked") + '">' +
+      (b.unlocked ? '<div class="badge-unlocked-label">&#10003;</div>' : "") +
+      '<div class="badge-icon">' + b.icon + '</div>' +
+      '<div class="badge-name">' + b.name + '</div>' +
+      '<div class="badge-desc">' + b.desc + '</div>' +
+      '<div class="badge-progress"><div class="badge-progress-fill" style="width:' + pct + '%"></div></div>' +
+    '</div>';
+  };
+
+  return '<div style="display:flex;align-items:baseline;gap:12px;margin-bottom:24px">' +
+    '<div class="rewards-count">' + unlockedCount + '</div>' +
+    '<div class="rewards-total">/ ' + BADGES.length + ' badge sbloccati</div>' +
+  '</div>' +
+  cats.map(cat => {
+    const catBadges = BADGES.filter(b => b.cat === cat);
+    return '<div class="rewards-section">' +
+      '<div class="rewards-section-title">' + cat + '</div>' +
+      '<div class="rewards-grid">' + catBadges.map(badgeHTML).join("") + '</div>' +
+    '</div>';
+  }).join("");
+}
+
+function calcUnlockedCount(totalKm, totalMin, airports, countries) {
+  const totalHours = totalMin / 60;
+  const totalFlights = state.flights.length;
+  const CONTINENT = {IT:"EU",ES:"EU",GB:"EU",FR:"EU",NL:"EU",DE:"EU",CH:"EU",AT:"EU",BE:"EU",IE:"EU",GR:"EU",TR:"EU",PT:"EU",DK:"EU",SE:"EU",NO:"EU",FI:"EU",PL:"EU",CZ:"EU",HU:"EU",RO:"EU",BG:"EU",RS:"EU",HR:"EU",CY:"EU",EG:"AF",TN:"AF",DZ:"AF",MA:"AF",ZA:"AF",KE:"AF",TZ:"AF",ET:"AF",NG:"AF",GH:"AF",IL:"AS",JO:"AS",AE:"AS",QA:"AS",KW:"AS",BH:"AS",OM:"AS",IN:"AS",LK:"AS",MV:"AS",NP:"AS",MY:"AS",TH:"AS",SG:"AS",HK:"AS",ID:"AS",PH:"AS",VN:"AS",JP:"AS",KR:"AS",TW:"AS",CN:"AS",AU:"OC",NZ:"OC",FJ:"OC",US:"AM",CA:"AM",MX:"AM",BR:"AM",CL:"AM",AR:"AM",CO:"AM",PE:"AM"};
+  const vc = new Set(state.flights.flatMap(f=>[AIRPORTS[f.origin],AIRPORTS[f.destination]]).filter(Boolean).map(ap=>CONTINENT[ap.country]).filter(Boolean));
+  const ISLAND_AP = new Set(["PMI","IBZ","MYK","JTR","CFU","RHO","HER","MLE","DPS","MNL","NAN","OOL","OLB","CAG","CTA","PMO","OKA","CJU","TPE","HKG","MFM","SIN"]);
+  const islandV = new Set(state.flights.flatMap(f=>[f.origin,f.destination]).filter(i=>ISLAND_AP.has(i))).size;
+  const LOWCOST = new Set(["FR","U2","W6","V7","PC","XQ","AK","DY"]);
+  const lcf = state.flights.filter(f=>{ if(!f.flightNum||f.flightNum.length<2)return false; return LOWCOST.has(f.flightNum.replace(/[0-9]/g,"").toUpperCase().slice(0,2)); }).length;
+  const rc={};state.flights.forEach(f=>{const k=[f.origin,f.destination].sort().join("-");rc[k]=(rc[k]||0)+1;});
+  const maxR=Math.max(0,...Object.values(rc));
+  const earlyF=state.flights.filter(f=>f.depTime&&parseInt(f.depTime.split(":")[0])<6).length;
+  const lateF=state.flights.filter(f=>f.depTime&&parseInt(f.depTime.split(":")[0])>=0&&parseInt(f.depTime.split(":")[0])<4).length;
+  const shortF=state.flights.filter(f=>f.durationMin&&f.durationMin<=45&&!f.durationEstimated).length;
+  const longF=state.flights.filter(f=>f.durationMin&&f.durationMin>=600).length;
+  const cnt=state.flights.flatMap(f=>[f.origin,f.destination]).reduce((a,x)=>{a[x]=(a[x]||0)+1;return a;},{});
+  const maxAP=Math.max(0,...Object.values(cnt).map(Number));
+  const checks = [
+    totalKm>=1000, totalKm>=10000, totalKm>=50000, totalKm>=100000, totalKm>=250000,
+    totalHours>=10, totalHours>=50, totalHours>=100, totalHours>=250, totalHours>=500,
+    totalFlights>=1, totalFlights>=10, totalFlights>=25, totalFlights>=50, totalFlights>=100,
+    vc.has("EU")&&vc.has("AF"), vc.has("AS"), vc.has("AM"), vc.size>=5, vc.size>=6,
+    earlyF>=1, lateF>=1, shortF>=1, longF>=1, maxR>=5, lcf>=5, islandV>=5, airports.size>=10, maxAP>=10
+  ];
+  return checks.filter(Boolean).length;
+}
+
+function renderPassport(totalKm,totalMin,airports,countries){
+  if(!state.flights.length)return'<div class="empty"><div class="empty-title">Nessun volo registrato</div><div>Aggiungi voli per generare il passaporto</div></div>';
+  const th=totalMin?Math.floor(totalMin/60):0,tm=totalMin?totalMin%60:0;
+  const routes=new Set(state.flights.map(f=>[f.origin,f.destination].sort().join("-"))).size;
+  const flags=[...new Set(state.flights.flatMap(f=>[AIRPORTS[f.origin]&&AIRPORTS[f.origin].country,AIRPORTS[f.destination]&&AIRPORTS[f.destination].country].filter(Boolean)))].map(c=>FLAG[c]||"").filter(Boolean);
+  const stamps=[...new Set(state.flights.flatMap(f=>[f.origin,f.destination]))].slice(0,16);
+  const pad=(s,n)=>String(s).toUpperCase().replace(/[^A-Z0-9]/g,"<").padEnd(n,"<").slice(0,n);
+
+  // Check if all badges unlocked for golden mode
+  const totalBadges = 29;
+  const unlockedBadges = calcUnlockedCount(totalKm, totalMin, airports, countries);
+  const isGolden = unlockedBadges >= totalBadges;
+  const passportClass = "passport" + (isGolden ? " golden" : "");
+  const bgColor = isGolden ? "#1a1400" : "#4a1942";
+  const subtitle = isGolden ? "Legendary Traveller &middot; All Badges Unlocked" : "Personal Travel Document &middot; Non ufficiale";
+
+  return'<div class="passport-wrap"><button class="passport-share-btn" onclick="sharePassport()">Salva immagine / Condividi</button><div class="'+passportClass+'" id="passport-card"><div class="passport-cover"><div class="passport-emblem">&#9674;</div><div class="passport-title">Flight Log &middot; Passaporto Personale</div><div class="passport-name">Meridian</div><div class="passport-subtitle">'+subtitle+'</div>'+(isGolden?'<div class="passport-legend-badge">&#9733; Legend &#9733;</div>':'')+  '</div><div class="passport-body"><div class="passport-stat-row"><span class="passport-stat-label">Voli effettuati</span><span class="passport-stat-value">'+state.flights.length+'<span class="passport-stat-unit">voli</span></span></div><div class="passport-stat-row"><span class="passport-stat-label">Distanza percorsa</span><span class="passport-stat-value">'+Math.round(totalKm).toLocaleString("it-IT")+'<span class="passport-stat-unit">km</span></span></div><div class="passport-stat-row"><span class="passport-stat-label">Tempo in volo</span><span class="passport-stat-value">'+th+'h '+String(tm).padStart(2,"0")+'m</span></div><div class="passport-stat-row"><span class="passport-stat-label">Aeroporti visitati</span><span class="passport-stat-value">'+airports.size+'<span class="passport-stat-unit">scali</span></span></div><div class="passport-stat-row"><span class="passport-stat-label">Paesi attraversati</span><span class="passport-stat-value">'+countries.size+'<span class="passport-stat-unit">paesi</span></span></div><div class="passport-stat-row"><span class="passport-stat-label">Rotte uniche</span><span class="passport-stat-value">'+routes+'<span class="passport-stat-unit">rotte</span></span></div><div class="passport-countries"><div class="passport-countries-label">Paesi visitati</div><div class="passport-flags">'+flags.join(" ")+'</div></div><div class="passport-stamps"><div class="passport-stamps-label">Scali</div><div class="passport-stamp-grid">'+stamps.map(i=>'<div class="passport-stamp">'+i+'</div>').join("")+'</div></div></div><div class="passport-mrz">'+("P<MRD"+pad("MERIDIAN",39))+'<br>'+(pad(state.flights.length+"VLI",9)+"0"+pad(Math.round(totalKm)+"KM",6)+"0"+pad(airports.size+"APT",6)+"0"+pad(countries.size+"CTR",14))+'</div></div></div>';
+}
+
+function renderForm(){
+  return'<div class="form-section"><div class="form-title">Nuovo volo</div><div class="form-row"><div class="form-field"><label>Origine &#9733;</label><input id="f-origin" placeholder="MXP" autocomplete="off" oninput="airportAC(this,\'origin\')" /><div id="sug-origin"></div></div><div class="form-field"><label>Destinazione &#9733;</label><input id="f-destination" placeholder="MAD" autocomplete="off" oninput="airportAC(this,\'destination\')" /><div id="sug-destination"></div></div></div><div id="preview" style="display:none" class="form-preview"></div><div class="form-row"><div class="form-field"><label>Decollo</label><input type="time" id="f-depTime" oninput="updatePreview()" /></div><div class="form-field"><label>Atterraggio</label><input type="time" id="f-arrTime" oninput="updatePreview()" /></div><div class="form-field"><label>Ritardo (min)</label><input type="number" min="0" id="f-delay" placeholder="0" /></div></div><div class="form-row"><div class="form-field"><label>N&#xB0; Volo</label><input id="f-flightNum" placeholder="AZ203" oninput="detectAirline(this.value)" /></div><div class="form-field"><label>Aeromobile</label><input id="f-aircraft" placeholder="A320" /></div><div class="form-field" style="flex:2"><label>Compagnia</label><input id="f-airline" placeholder="ITA Airways" /></div></div><div class="form-field"><label>Note</label><input id="f-note" placeholder="Sedile finestrino, turbolenza..." /></div><div id="form-error"></div><button class="btn-submit" onclick="submitFlight()">Registra volo</button></div>';
+}
+
+// ── INTERACTIONS ──────────────────────────────────────────────────────────────
+function showAirportInfo(iata,cx,cy){
+  const ap=AIRPORTS[iata];if(!ap)return;
+  const el=document.getElementById("airport-info"),container=document.getElementById("globe");
+  if(!el||!container)return;
+  const rect=container.getBoundingClientRect();
+  const visits=state.flights.filter(f=>f.origin===iata||f.destination===iata).length;
+  const dep=state.flights.filter(f=>f.origin===iata).length,arr=state.flights.filter(f=>f.destination===iata).length;
+  el.innerHTML='<div class="airport-info-iata">'+(FLAG[ap.country]||"")+" "+iata+'</div><div class="airport-info-city">'+ap.city+'</div><div class="airport-info-name">'+ap.name+'</div>'+(visits>0?'<div class="airport-info-visits">'+visits+' '+(visits===1?"volo":"voli")+' &middot; '+dep+' out &middot; '+arr+' in</div>':'<div class="airport-info-visits" style="color:#4a463d">Mai visitato</div>');
+  el.style.left=(cx-rect.left)+"px"; el.style.top=(cy-rect.top)+"px"; el.classList.add("visible");
+}
+function hideAirportInfo(){const el=document.getElementById("airport-info");if(el)el.classList.remove("visible");}
+
+function setTab(t){state.tab=t;if(globe&&globe.renderer.domElement.parentNode)globe.renderer.domElement.remove();renderApp();}
+function setSortBy(v){state.sortBy=v;renderApp();}
+
+async function doDeleteFlight(id){
+  if(!confirm("Eliminare questo volo?"))return;
+  setSync("syncing");
+  try{ await supa.deleteFlight(id); state.flights=state.flights.filter(f=>f.id!==id); setSync("ok"); renderApp(); }
+  catch(e){ setSync("error"); alert("Errore eliminazione: "+e.message); }
+}
+
+function airportAC(input,field){
+  const q=input.value.toUpperCase(),sug=document.getElementById("sug-"+field);
+  if(q.length<2){sug.innerHTML="";updatePreview();return;}
+  const m=Object.entries(AIRPORTS).filter(([iata,ap])=>iata.includes(q)||ap.city.toUpperCase().includes(q)||ap.name.toUpperCase().includes(q)).slice(0,6);
+  if(!m.length){sug.innerHTML="";return;}
+  sug.innerHTML='<div class="suggestions">'+m.map(([iata,ap])=>'<div class="suggestion" onmousedown="selAP(\''+field+'\',\''+iata+'\')" ontouchstart="selAP(\''+field+'\',\''+iata+'\')"><span class="suggestion-iata">'+iata+'</span><span class="suggestion-city">'+(FLAG[ap.country]||"")+" "+ap.city+" &mdash; "+ap.name+'</span></div>').join("")+'</div>';
+  updatePreview();
+}
+function selAP(field,iata){document.getElementById("f-"+field).value=iata;document.getElementById("sug-"+field).innerHTML="";updatePreview();}
+function detectAirline(fn){const d=airlineFromFN(fn),el=document.getElementById("f-airline");if(d&&el&&!el.value)el.value=d;}
+function updatePreview(){
+  const orig=document.getElementById("f-origin")&&document.getElementById("f-origin").value.toUpperCase();
+  const dest=document.getElementById("f-destination")&&document.getElementById("f-destination").value.toUpperCase();
+  const dep=document.getElementById("f-depTime")&&document.getElementById("f-depTime").value;
+  const arr=document.getElementById("f-arrTime")&&document.getElementById("f-arrTime").value;
+  const prev=document.getElementById("preview");if(!prev)return;
+  const ap1=AIRPORTS[orig],ap2=AIRPORTS[dest];
+  if(ap1&&ap2&&orig!==dest){const km=Math.round(haversine(ap1.lat,ap1.lon,ap2.lat,ap2.lon)),manual=calcDur(dep,arr),est=estimateDur(km),durStr=manual?(Math.floor(manual/60)+"h "+String(manual%60)+"m"):("~"+Math.floor(est/60)+"h "+String(est%60)+'m <span style="color:#6b6558">(stima)</span>');prev.style.display="block";prev.innerHTML="<strong>"+km.toLocaleString("it-IT")+"</strong> km &middot; "+ap1.city+" &rarr; "+ap2.city+" &middot; <strong>"+durStr+"</strong>";}
+  else prev.style.display="none";
+}
+function setupAddForm(){document.addEventListener("click",e=>{if(!e.target.closest(".form-field"))document.querySelectorAll(".suggestions").forEach(s=>s.remove());});}
+
+async function submitFlight(){
+  const g=id=>document.getElementById(id)&&document.getElementById(id).value;
+  const orig=(g("f-origin")||"").toUpperCase(),dest=(g("f-destination")||"").toUpperCase();
+  const err=document.getElementById("form-error");err.innerHTML="";
+  if(!orig||!dest){err.innerHTML='<div class="form-error">Partenza e arrivo sono obbligatori</div>';return;}
+  const ap1=AIRPORTS[orig],ap2=AIRPORTS[dest];
+  if(!ap1){err.innerHTML='<div class="form-error">Aeroporto "'+orig+'" non trovato</div>';return;}
+  if(!ap2){err.innerHTML='<div class="form-error">Aeroporto "'+dest+'" non trovato</div>';return;}
+  const dep=g("f-depTime")||"",arr=g("f-arrTime")||"",manual=calcDur(dep,arr),dist=Math.round(haversine(ap1.lat,ap1.lon,ap2.lat,ap2.lon));
+  const flight={id:Date.now(),flightNum:(g("f-flightNum")||"").toUpperCase(),date:new Date().toISOString().slice(0,10),origin:orig,destination:dest,depTime:dep,arrTime:arr,delay:parseInt(g("f-delay"))||0,aircraft:(g("f-aircraft")||"").toUpperCase(),airline:g("f-airline")||"",note:g("f-note")||"",distanceKm:dist,durationMin:manual||estimateDur(dist),durationEstimated:!manual};
+  setSync("syncing");
+  try{ await supa.insertFlight(flight); state.flights.unshift(flight); setSync("ok"); setTab("list"); }
+  catch(e){ setSync("error"); err.innerHTML='<div class="form-error">Errore salvataggio: '+e.message+'</div>'; }
+}
+
+async function sharePassport() {
+  const card = document.getElementById("passport-card");
+  if (!card) return;
+
+  const btn = document.querySelector(".passport-share-btn");
+  if (btn) { btn.textContent = "Generando immagine..."; btn.disabled = true; }
+
+  // Load html2canvas if not already loaded
+  if (!window.html2canvas) {
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+      s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  try {
+    const canvas = await window.html2canvas(card, {
+      scale: 3,
+      useCORS: true,
+      backgroundColor: card.classList.contains("golden") ? "#1a1400" : "#4a1942",
+      logging: false,
+    });
+
+    const dataUrl = canvas.toDataURL("image/png");
+
+    if (btn) { btn.textContent = "Salva immagine / Condividi"; btn.disabled = false; }
+
+    // Try native share with file (iOS/Android)
+    if (navigator.share && navigator.canShare) {
+      canvas.toBlob(async blob => {
+        const file = new File([blob], "flight-log-passport.png", { type: "image/png" });
+        if (navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({ files: [file], title: "flight log — passaporto personale" });
+            return;
+          } catch(e) {}
+        }
+        // Fallback: download
+        downloadPassport(dataUrl);
+      }, "image/png");
+    } else {
+      // Desktop: download directly
+      downloadPassport(dataUrl);
+    }
+  } catch(e) {
+    if (btn) { btn.textContent = "Salva immagine / Condividi"; btn.disabled = false; }
+    const t = document.getElementById("share-toast");
+    if (t) { t.textContent = "Errore generazione immagine"; t.classList.add("visible"); setTimeout(() => { t.classList.remove("visible"); t.textContent = "Copiato negli appunti"; }, 2500); }
+  }
+}
+
+function downloadPassport(dataUrl) {
+  const a = document.createElement("a");
+  a.href = dataUrl;
+  a.download = "flight-log-passport.png";
+  a.click();
+  const t = document.getElementById("share-toast");
+  if (t) { t.textContent = "Immagine salvata!"; t.classList.add("visible"); setTimeout(() => { t.classList.remove("visible"); t.textContent = "Copiato negli appunti"; }, 2500); }
+}
+
+// Boot
+boot();
+
+
+
+
+</script>
+</body>
+</html>
